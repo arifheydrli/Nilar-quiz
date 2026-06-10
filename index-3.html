@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NilAr Edu — Bilik Yarışması</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f1f3d;--navy2:#162d56;--gold:#c9993a;--gold2:#f0c060;
+  --teal:#0a7a6e;--teal2:#0d9e8e;
+  --red:#e05050;--green:#2ea866;
+  --bg:#f4f6fb;--white:#fff;
+  --border:rgba(15,31,61,0.10);
+  --sh:0 6px 28px rgba(15,31,61,0.10);
+  --sh2:0 16px 56px rgba(15,31,61,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--navy);min-height:100vh;overflow-x:hidden;}
+
+/* ── HEADER ── */
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:0 5%;height:66px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 3px 18px rgba(0,0,0,0.22);}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.logo-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:19px;font-weight:800;color:var(--navy);}
+.logo-text{font-family:'Playfair Display',serif;color:#fff;font-size:1.25rem;font-weight:700;}
+.logo-text em{color:var(--gold2);font-style:normal;}
+.logo-sub{font-size:0.58rem;color:rgba(255,255,255,0.35);letter-spacing:2.5px;text-transform:uppercase;display:block;margin-top:-3px;}
+.hdr-right{display:flex;align-items:center;gap:12px;}
+.xal-badge{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:7px 16px;color:#fff;font-size:0.82rem;font-weight:600;}
+.xal-badge b{color:var(--gold2);font-size:1rem;}
+
+/* ── SCREENS ── */
+.screen{display:none;min-height:calc(100vh - 66px);}
+.screen.active{display:block;}
+
+/* ══════════════════════════════
+   HOME
+══════════════════════════════ */
+#s-home{background:linear-gradient(160deg,var(--navy) 0%,#1a3a6e 55%,#0a2a4a 100%);padding:60px 5% 80px;display:flex;flex-direction:column;align-items:center;}
+.home-hero{text-align:center;max-width:680px;margin-bottom:56px;}
+.home-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,153,58,0.15);border:1px solid rgba(201,153,58,0.35);border-radius:20px;padding:6px 18px;color:var(--gold2);font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);animation:blink 1.8s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+.home-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.6rem);color:#fff;line-height:1.1;margin-bottom:16px;}
+.home-title em{color:var(--gold2);font-style:normal;}
+.home-desc{color:rgba(255,255,255,0.50);font-size:1rem;line-height:1.75;max-width:520px;margin:0 auto 36px;}
+.home-features{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:0;}
+.feat-chip{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 16px;color:rgba(255,255,255,0.65);font-size:0.8rem;font-weight:600;}
+
+/* NAME FORM */
+.name-form-wrap{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:22px;padding:36px 40px;max-width:520px;width:100%;backdrop-filter:blur(10px);margin-bottom:40px;}
+.name-form-wrap h3{font-family:'Playfair Display',serif;color:#fff;font-size:1.4rem;margin-bottom:6px;}
+.name-form-wrap p{color:rgba(255,255,255,0.4);font-size:0.83rem;margin-bottom:24px;}
+.inp-label{color:rgba(255,255,255,0.55);font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:7px;}
+.inp{width:100%;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.14);border-radius:11px;padding:13px 16px;font-family:'Outfit',sans-serif;font-size:0.95rem;color:#fff;outline:none;transition:border-color .2s;margin-bottom:16px;}
+.inp:focus{border-color:var(--gold);}
+.inp::placeholder{color:rgba(255,255,255,0.25);}
+.sinif-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
+.sc{border-radius:11px;padding:12px 6px;text-align:center;cursor:pointer;border:2px solid transparent;transition:all .22s;background:rgba(255,255,255,0.05);}
+.sc:hover{background:rgba(255,255,255,0.1);}
+.sc.sel{border-color:var(--gold);background:rgba(201,153,58,0.15);}
+.sc-num{font-size:1.3rem;font-weight:900;color:#fff;display:block;}
+.sc-lbl{font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:.5px;}
+.fenn-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;}
+.fc{border-radius:11px;padding:13px 8px;text-align:center;cursor:pointer;border:2px solid transparent;transition:all .22s;background:rgba(255,255,255,0.05);}
+.fc:hover{background:rgba(255,255,255,0.1);}
+.fc.sel{border-color:var(--teal2);background:rgba(13,158,142,0.15);}
+.fc-ico{font-size:22px;display:block;margin-bottom:5px;}
+.fc-name{font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.75);}
+.start-btn{width:100%;padding:15px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:all .25s;letter-spacing:.3px;}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,153,58,0.45);}
+.start-btn:disabled{opacity:.38;cursor:not-allowed;transform:none;}
+
+/* ══════════════════════════════
+   QUIZ
+══════════════════════════════ */
+#s-quiz{background:var(--bg);padding:28px 5% 50px;}
+.quiz-wrap{max-width:700px;margin:0 auto;}
+.q-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.q-badge{padding:5px 14px;border-radius:18px;font-size:0.73rem;font-weight:800;color:#fff;letter-spacing:.3px;}
+.q-num{font-size:0.83rem;font-weight:700;color:#6b7c93;}
+.pbar-wrap{margin-bottom:20px;}
+.pbar{height:8px;background:rgba(15,31,61,0.08);border-radius:8px;overflow:hidden;}
+.pbar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--teal),var(--teal2));transition:width .45s ease;}
+
+/* TIMER */
+.timer-center{display:flex;justify-content:center;margin-bottom:18px;}
+.tring{position:relative;width:72px;height:72px;}
+.tring svg{transform:rotate(-90deg);}
+.tring circle{fill:none;stroke-width:5;stroke-linecap:round;}
+.tr-bg{stroke:rgba(15,31,61,0.07);}
+.tr-fill{stroke:var(--teal);transition:stroke-dashoffset 1s linear;stroke-dasharray:201;}
+.tr-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:800;color:var(--navy);}
+.tring.danger .tr-fill{stroke:var(--red);animation:pulse .5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* Q CARD */
+.q-card{background:var(--white);border-radius:20px;padding:28px 26px;box-shadow:var(--sh);border:1px solid var(--border);margin-bottom:18px;position:relative;overflow:hidden;}
+.q-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--teal2));}
+.q-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:8px;font-size:0.7rem;font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:.5px;}
+.q-ico{font-size:2.6rem;display:block;margin-bottom:11px;}
+.q-text{font-size:1.1rem;font-weight:700;color:var(--navy);line-height:1.55;}
+.diff-chip{position:absolute;top:18px;right:18px;padding:3px 10px;border-radius:8px;font-size:0.68rem;font-weight:800;letter-spacing:.5px;}
+.diff-easy{background:#e8f8ee;color:#1a8040;}
+.diff-med{background:#fff6e0;color:#b07000;}
+.diff-hard{background:#fce8e8;color:#b02020;}
+
+/* OPTIONS */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.opt{padding:14px 14px;border-radius:13px;border:2px solid var(--border);background:var(--white);cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.87rem;font-weight:600;color:var(--navy);transition:all .18s;text-align:left;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(15,31,61,0.05);}
+.opt:hover:not(:disabled){border-color:var(--teal);background:#f0fcfa;transform:translateY(-1px);}
+.opt-ltr{width:28px;height:28px;border-radius:8px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.78rem;flex-shrink:0;transition:all .18s;}
+.opt.correct{background:#e8f8ee;border-color:var(--green);}
+.opt.correct .opt-ltr{background:var(--green);color:#fff;}
+.opt.wrong{background:#fce8e8;border-color:var(--red);}
+.opt.wrong .opt-ltr{background:var(--red);color:#fff;}
+.opt.reveal{background:#fff9e8;border-color:var(--gold);}
+.opt:disabled{cursor:default;}
+
+/* FEEDBACK */
+.fb{border-radius:14px;padding:15px 18px;margin-top:14px;display:none;align-items:flex-start;gap:14px;}
+.fb.show{display:flex;}
+.fb-c{background:#e8f8ee;border:1.5px solid #2ea866;}
+.fb-w{background:#fce8e8;border:1.5px solid var(--red);}
+.fb-t{background:#fff6e0;border:1.5px solid var(--gold);}
+.fb-ico{font-size:1.8rem;flex-shrink:0;}
+.fb-body h4{font-size:0.88rem;font-weight:800;margin-bottom:3px;}
+.fb-body p{font-size:0.78rem;font-weight:500;color:#5a6e85;line-height:1.45;}
+.fb-c h4{color:#1a7a40;}
+.fb-w h4{color:#b02020;}
+.fb-t h4{color:#8a5c00;}
+
+.next-btn{display:none;margin-top:14px;width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:800;cursor:pointer;transition:all .2s;letter-spacing:.2px;}
+.next-btn.show{display:block;}
+.next-btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(15,31,61,0.3);}
+
+/* ══════════════════════════════
+   RESULT
+══════════════════════════════ */
+#s-result{background:var(--bg);padding:40px 5% 60px;}
+.result-wrap{max-width:620px;margin:0 auto;}
+.res-hero{text-align:center;margin-bottom:32px;}
+.res-emoji{font-size:72px;display:block;margin-bottom:14px;}
+.res-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--navy);margin-bottom:8px;}
+.res-sub{color:#6b7c93;font-size:0.95rem;font-weight:500;}
+.res-card{background:var(--white);border-radius:20px;padding:28px;box-shadow:var(--sh);border:1px solid var(--border);margin-bottom:20px;}
+.res-score-big{font-family:'Playfair Display',serif;font-size:3.4rem;font-weight:800;color:var(--gold);line-height:1;}
+.res-score-label{font-size:0.8rem;font-weight:600;color:#6b7c93;margin-top:4px;}
+.res-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:22px;}
+.rg-item{padding:16px;border-radius:13px;text-align:center;}
+.rg-val{font-size:1.5rem;font-weight:800;display:block;margin-bottom:2px;}
+.rg-key{font-size:0.7rem;font-weight:700;color:#6b7c93;}
+.rg-g{background:#e8f8ee;} .rg-g .rg-val{color:#1a7a40;}
+.rg-r{background:#fce8e8;} .rg-r .rg-val{color:#b02020;}
+.rg-b{background:#e8f0ff;} .rg-b .rg-val{color:#1a4ab0;}
+.medals-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px;}
+.medal-chip{padding:8px 15px;border-radius:10px;font-size:0.78rem;font-weight:800;}
+.res-btns{display:flex;gap:12px;}
+.rb{flex:1;padding:14px;border-radius:12px;border:none;font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:800;cursor:pointer;transition:all .22s;}
+.rb-p{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;}
+.rb-s{background:var(--white);color:var(--navy);border:2px solid var(--border);}
+.rb:hover{transform:translateY(-1px);box-shadow:var(--sh2);}
+.cert-btn{width:100%;padding:16px;border-radius:13px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:all .25s;display:none;margin-bottom:16px;letter-spacing:.2px;}
+.cert-btn.show{display:block;}
+.cert-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,153,58,0.4);}
+
+/* ══════════════════════════════
+   SERTİFİKAT MODAL
+══════════════════════════════ */
+.modal-ov{display:none;position:fixed;inset:0;z-index:1000;background:rgba(10,20,40,0.88);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px;}
+.modal-ov.open{display:flex;}
+.cert-modal{background:var(--white);border-radius:22px;max-width:680px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.35);}
+.cert-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.cert-close:hover{background:rgba(255,255,255,0.25);}
+
+/* SERTİFİKAT İÇİ */
+#certCanvas{width:100%;display:block;}
+.cert-actions{padding:18px 24px;display:flex;gap:12px;border-top:1px solid var(--border);}
+.ca-btn{flex:1;padding:12px;border-radius:10px;border:none;font-family:'Outfit',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all .2s;}
+.ca-download{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);}
+.ca-close{background:var(--bg);color:var(--navy);border:1.5px solid var(--border);}
+.ca-btn:hover{transform:translateY(-1px);}
+
+/* CONFETTI */
+.cnf{position:fixed;pointer-events:none;z-index:999;border-radius:2px;animation:fall linear forwards;}
+@keyframes fall{0%{opacity:1;transform:translateY(-20px) rotate(0deg);}100%{opacity:0;transform:translateY(100vh) rotate(720deg);}}
+
+@media(max-width:540px){
+  .sinif-row{grid-template-columns:repeat(3,1fr);}
+  .opts{grid-template-columns:1fr;}
+  .res-grid{grid-template-columns:1fr;}
+  .res-btns{flex-direction:column;}
+  .name-form-wrap{padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">
+    <div class="logo-mark">N</div>
+    <div>
+      <span class="logo-text">Nil<em>Ar</em></span>
+      <span class="logo-sub">Edu Center</span>
+    </div>
+  </a>
+  <div class="hdr-right">
+    <button id="sndBtn" onclick="toggleSound()" title="Səsi söndür" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:7px 13px;color:#fff;font-size:1.1rem;cursor:pointer;transition:all .2s;">🔊</button>
+    <button onclick="openAdmin()" title="Admin Panel" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:7px 13px;color:rgba(255,255,255,0.6);font-size:0.8rem;font-weight:600;cursor:pointer;transition:all .2s;">⚙ Admin</button>
+    <div class="xal-badge">⭐ <b id="hdrXal">0</b> xal</div>
+  </div>
+</header>
+
+<!-- ══ HOME ══ -->
+<div class="screen active" id="s-home">
+  <div class="home-hero">
+    <div class="home-badge"><span class="badge-dot"></span>Bilik Yarışması</div>
+    <h1 class="home-title">Biliyi sına,<br><em>sertifikat</em> qazан!</h1>
+    <p class="home-desc">Peşəkar suallarla özünü yoxla. 90%+ nəticə üçün fərdi sertifikat alacaqsan.</p>
+    <div class="home-features">
+      <div class="feat-chip">⏱ 20 saniyə / sual</div>
+      <div class="feat-chip">🧠 Məntiqi suallar</div>
+      <div class="feat-chip">🏅 Sertifikat</div>
+      <div class="feat-chip">⭐ Xal sistemi</div>
+    </div>
+  </div>
+
+  <div class="name-form-wrap">
+    <h3>Yarışmaya qoşul</h3>
+    <p>Adını daxil et, sinif və fənn seç — oyun başlasın.</p>
+
+    <label class="inp-label">Ad Soyad</label>
+    <input class="inp" id="nameInp" placeholder="Məs: Əli Məmmədov" oninput="checkForm()">
+
+    <label class="inp-label" style="margin-bottom:10px;">Sinif</label>
+    <div class="sinif-row">
+      <div class="sc" onclick="selSinif(2)" id="sc2"><span class="sc-num">2</span><span class="sc-lbl">sinif</span></div>
+      <div class="sc" onclick="selSinif(3)" id="sc3"><span class="sc-num">3</span><span class="sc-lbl">sinif</span></div>
+      <div class="sc" onclick="selSinif(4)" id="sc4"><span class="sc-num">4</span><span class="sc-lbl">sinif</span></div>
+      <div class="sc" onclick="selSinif(5)" id="sc5"><span class="sc-num">5</span><span class="sc-lbl">sinif</span></div>
+      <div class="sc" onclick="selSinif(6)" id="sc6"><span class="sc-num">6</span><span class="sc-lbl">sinif</span></div>
+    </div>
+
+    <label class="inp-label" style="margin-bottom:10px;">Fənn</label>
+    <div class="fenn-row" id="fennRow"></div>
+
+    <button class="start-btn" id="startBtn" onclick="startQuiz()" disabled>Yarışmanı Başlat →</button>
+  </div>
+</div>
+
+<!-- ══ QUIZ ══ -->
+<div class="screen" id="s-quiz">
+  <div class="quiz-wrap">
+    <div class="q-topbar">
+      <span class="q-badge" id="qBadge"></span>
+      <span class="q-num" id="qNum">1 / 10</span>
+    </div>
+    <div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" id="pFill" style="width:10%"></div></div></div>
+
+    <div class="timer-center">
+      <div class="tring" id="tring">
+        <svg width="72" height="72" viewBox="0 0 72 72">
+          <circle class="tr-bg" cx="36" cy="36" r="32"/>
+          <circle class="tr-fill" id="tCircle" cx="36" cy="36" r="32"/>
+        </svg>
+        <div class="tr-num" id="tNum">20</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="qCard">
+      <span class="q-tag" id="qTag"></span>
+      <span class="diff-chip" id="diffChip"></span>
+      <span class="q-ico" id="qIco">🔢</span>
+      <div class="q-text" id="qText"></div>
+    </div>
+
+    <div class="opts" id="optsGrid"></div>
+    <div class="fb" id="fbDiv">
+      <div class="fb-ico" id="fbIco"></div>
+      <div class="fb-body"><h4 id="fbH"></h4><p id="fbP"></p></div>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextQ()">Növbəti sual →</button>
+  </div>
+</div>
+
+<!-- ══ RESULT ══ -->
+<div class="screen" id="s-result">
+  <div class="result-wrap">
+    <div class="res-hero">
+      <span class="res-emoji" id="resEmoji">🏆</span>
+      <h2 class="res-title" id="resTitle">Əla nəticə!</h2>
+      <p class="res-sub" id="resSub"></p>
+    </div>
+    <div class="res-card">
+      <div class="res-score-big" id="resScore">0/10</div>
+      <div class="res-score-label">düzgün cavab</div>
+      <div class="res-grid">
+        <div class="rg-item rg-g"><span class="rg-val" id="rgC">0</span><span class="rg-key">✅ Düzgün</span></div>
+        <div class="rg-item rg-r"><span class="rg-val" id="rgW">0</span><span class="rg-key">❌ Yanlış</span></div>
+        <div class="rg-item rg-b"><span class="rg-val" id="rgX">0</span><span class="rg-key">⭐ Xal</span></div>
+      </div>
+    </div>
+    <div class="medals-row" id="medalsRow"></div>
+    <button class="cert-btn" id="certBtn" onclick="showCert()">🏅 Sertifikatı Yüklə</button>
+    <div class="res-btns">
+      <button class="rb rb-p" onclick="startQuiz()">🔄 Yenidən</button>
+      <button class="rb rb-s" onclick="goHome()">🏠 Əsas səhifə</button>
+    </div>
+  </div>
+</div>
+
+<!-- SERTİFİKAT MODAL -->
+<div class="modal-ov" id="certModal">
+  <div class="cert-modal" style="position:relative;">
+    <button class="cert-close" onclick="closeCert()">✕</button>
+    <canvas id="certCanvas"></canvas>
+    <div class="cert-actions">
+      <button class="ca-btn ca-download" onclick="downloadCert()">⬇ Yüklə (PNG)</button>
+      <button class="ca-btn ca-close" onclick="closeCert()">Bağla</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════
+//  SUAL BANKASI — Məntiqi, Çətin
+// ════════════════════════════════════════════
+const DB = {
+  2:{
+    azerbaycan:[
+      {e:'📝',d:'med',q:'"Gül" sözü cümlədə isim kimi işlənəndə hansı sual altında olur?',o:['necə?','nə edir?','nə?','harada?'],a:2,i:'İsim "nə?" sualına cavab verir. "Gül" — əşyanın adıdır.'},
+      {e:'🔤',d:'med',q:'"Ağ ev" birləşməsindəki "ağ" sözü hansı nitq hissəsidir?',o:['isim','sifət','fel','zərf'],a:1,i:'"Ağ" əşyanın əlamətini bildirir — sifətdir.'},
+      {e:'✏️',d:'easy',q:'"Kitab oxudum." cümləsinin xəbəri hansı sözdür?',o:['kitab','mən','oxudum','yoxdur'],a:2,i:'Xəbər hərəkəti bildirir: "oxudum".'},
+      {e:'📖',d:'hard',q:'"Uşaqlar meşədə oynadılar." cümləsindəki "meşədə" sözü hansı cümlə üzvüdür?',o:['mübtəda','xəbər','tamamlıq','zərflik'],a:3,i:'"Meşədə" — harada? sualına cavab verir → zərflik.'},
+      {e:'🔤',d:'med',q:'Hansı söz cüt sait ehtiva edir?',o:['alma','şüşə','daş','ev'],a:1,i:'"Şüşə" sözündə ü+ə — iki sait var. Alma: a+a, ev: e (bir sait).'},
+      {e:'✏️',d:'hard',q:'"Atam mənə kitab aldı." cümləsindəki "mənə" hansı hal şəkilçisi daşıyır?',o:['yiyəlik','yönlük','çıxışlıq','yerlik'],a:1,i:'"Mənə" — kimə? sualına cavab verir → yönlük hal (-a/-ə).'},
+      {e:'📝',d:'easy',q:'Hansı sözlər sinonimdir (eyni mənalı)?',o:['isti—soyuq','böyük—kiçik','qoca—yaşlı','gəlmək—getmək'],a:2,i:'"Qoca" və "yaşlı" eyni mənaya yaxın sözlərdir.'},
+      {e:'🔤',d:'med',q:'"Meşə" sözünə "-dən" şəkilçisi əlavə etsək, hansı suala cavab verir?',o:['harada?','haraya?','haradan?','nə?'],a:2,i:'"Meşədən" — haradan? sualına cavab verir → çıxışlıq hal.'},
+      {e:'📖',d:'hard',q:'Hansı cümlə nida cümləsidir?',o:['Hava isti olacaq.','Hava isti olacaqmı?','Nə gözəl havalardır!','Mən çölə çıxacağam.'],a:2,i:'Nida cümləsi güclü duyğu bildirir — nida işarəsi ilə bitir!'},
+      {e:'✏️',d:'med',q:'"Bağça" sözündəki "-ça" şəkilçisi nə bildirir?',o:['çoxluq','kiçiklik','əlamət','felin zamanı'],a:1,i:'"-ça/-cə" kiçiltmə şəkilçisidir: bağ → bağça (kiçik bağ).'},
+      {e:'📝',d:'hard',q:'Hansı söz sifətin üstünlük dərəcəsindədir?',o:['gözəl','daha gözəl','ən gözəl','çox gözəl'],a:2,i:'"Ən gözəl" — üstünlük dərəcəsi (ən + sifət).'},
+      {e:'🔤',d:'med',q:'"O gün" ifadəsindəki "o" hansı nitq hissəsidir?',o:['isim','sifət','əvəzlik','bağlayıcı'],a:2,i:'"O" — əvəzlikdir, burada ismə aid olsa da, əvəzlik funksiyasındadır.'},
+    ],
+    riyaziyyat:[
+      {e:'🔢',d:'med',q:'Hansı ifadə ən böyük nəticə verir: 3×7, 4×5, 6×4 yoxsa 5×5?',o:['3×7=21','4×5=20','6×4=24','5×5=25'],a:3,i:'5×5=25 — ən böyük nəticə!'},
+      {e:'➕',d:'hard',q:'Bir ədədin 3 misli 36-dır. Həmin ədədin 4 misli neçədir?',o:['12','40','48','36'],a:2,i:'Ədəd = 36÷3 = 12. 12×4 = 48.'},
+      {e:'📐',d:'med',q:'Tərəfi 5 sm olan kvadratın sahəsi neçədir?',o:['10 sm²','20 sm²','25 sm²','15 sm²'],a:2,i:'Kvadratın sahəsi = a² = 5² = 25 sm².'},
+      {e:'🔢',d:'hard',q:'2, 4, 8, 16, ___ — ardıcıllığın növbəti ədədi hansıdır?',o:['24','30','32','36'],a:2,i:'Hər ədəd əvvəlkinin 2 mislidir: 16×2=32.'},
+      {e:'➖',d:'med',q:'200 - 87 = ?',o:['103','113','123','113'],a:1,i:'200 - 87 = 113.'},
+      {e:'✖️',d:'hard',q:'Əgər ★ + ★ = 14 isə, ★ × ★ = ?',o:['14','42','49','56'],a:2,i:'★ = 7 (çünki 7+7=14). 7×7=49.'},
+      {e:'📏',d:'med',q:'1 saat 45 dəqiqə = neçə dəqiqə?',o:['95','100','105','110'],a:2,i:'1 saat = 60 dəq. 60+45 = 105 dəq.'},
+      {e:'🔢',d:'hard',q:'Hansı ədəd həm 2-yə, həm də 3-ə tam bölünür?',o:['8','14','18','20'],a:2,i:'18 ÷ 2 = 9 ✓  18 ÷ 3 = 6 ✓. 18 hər ikisinin ortaq məxrəcidir.'},
+      {e:'➕',d:'med',q:'Üç ardıcıl natural ədədin cəmi 24-dür. Ən kiçiyi hansıdır?',o:['6','7','8','9'],a:1,i:'7+8+9=24. Ən kiçiyi 7.'},
+      {e:'📐',d:'hard',q:'Uzunluğu 8 sm, eni 5 sm olan düzbucaqlının perimetri neçədir?',o:['13','26','40','20'],a:1,i:'P = 2(a+b) = 2(8+5) = 2×13 = 26 sm.'},
+      {e:'🔢',d:'med',q:'57-ni 3-ə böldükdə qalıq neçədir?',o:['0','1','2','3'],a:0,i:'57÷3=19, qalıq yoxdur (0). 3×19=57.'},
+      {e:'✖️',d:'hard',q:'Bir məhsulun qiyməti 12 manatdır. 5 ədəd almaq üçün neçə manat lazımdır?',o:['50','60','55','58'],a:1,i:'12 × 5 = 60 manat.'},
+    ],
+    həyat:[
+      {e:'🌿',d:'med',q:'Günəş enerjisi olmadan bitkilər nə edə bilməz?',o:['böyümək','fotosintez etmək','toxum yaratmaq','hamısı'],a:3,i:'Günəş olmadan bitkilər fotosintez edə bilməz → qida yox → böyüyə bilməz.'},
+      {e:'💧',d:'hard',q:'Su buxarlananda hansı proses baş verir?',o:['soyuq su qızır','su havaya qarışır','mayedən qaza keçir','donur'],a:2,i:'Buxarlanma — suyun maye haldan qaz (buxar) halına keçməsidir.'},
+      {e:'🫀',d:'med',q:'İnsan ürəyinin əsas vəzifəsi nədir?',o:['hava təmizləmək','qan pompasıdır','qida həzm edir','oksigen istehsal edir'],a:1,i:'Ürək qanı damarlar vasitəsilə bütün bədənə pompalayır.'},
+      {e:'☀️',d:'hard',q:'Günəşin işığı Yerə çatmaq üçün təxminən neçə dəqiqə lazımdır?',o:['1 dəq','8 dəq','30 dəq','60 dəq'],a:1,i:'Günəş işığı ~8 dəqiqəyə Yerə çatır (işığın sürəti 300 000 km/s).'},
+      {e:'🌙',d:'med',q:'Ay Yer ətrafında neçə gündə tam dövr edir?',o:['7 gün','14 gün','28-29 gün','365 gün'],a:2,i:'Ay Yer ətrafında ~29.5 gündə (bir ay) tam dövr edir.'},
+      {e:'🌊',d:'hard',q:'Xəzər dənizi niyə "dəniz" deyil, əslində "göl" hesab edilir?',o:['çox böyükdür','okeanla bağlantısı yoxdur','duzdur','dərindən'],a:1,i:'Dəniz okeanla bağlı olmalıdır. Xəzər qapalı hövzədir → əslində göldür.'},
+      {e:'🌱',d:'med',q:'Hansı heyvan tam metamorfoz keçirir?',o:['it','kəpənək','balıq','quş'],a:1,i:'Kəpənək tam metamorfoz: yumurta→tırtıl→barama→kəpənək.'},
+      {e:'⚡',d:'hard',q:'Hansı maddə elektrik keçiricisidir?',o:['ağac','plastik','mis','rezin'],a:2,i:'Mis metal olduğuna görə elektronları sərbəst daşıyır → yaxşı keçiricidir.'},
+      {e:'🌍',d:'med',q:'Azərbaycanda hansı iqlim tipi üstünlük edir?',o:['tropik','mülayim','quru subtropik','arktik'],a:2,i:'Azərbaycanda əsasən quru subtropik iqlim üstünlük edir.'},
+      {e:'🐟',d:'med',q:'Balıqların qəlsəmələri hansı funksiyanı yerinə yetirir?',o:['üzmək üçün','suda oksigeni ayırmaq üçün','qida həzm üçün','hərəkət üçün'],a:1,i:'Qəlsəmələr sudakı oksigeni ayırıb qana ötürür — tənəffüs orqanıdır.'},
+      {e:'🌡️',d:'hard',q:'Bədən temperaturu 39°C olarsa bu nəyi göstərir?',o:['normal haldır','hipotermiyadır','yüksək hərarətdir (qızdırma)','ölüm təhlükəsidir'],a:2,i:'Normal temp. 36.6°C-dir. 39°C qızdırmadır — infeksiyaya işarə ola bilər.'},
+      {e:'🌈',d:'med',q:'Göy qurşağı niyə yaranır?',o:['bulud işığı əksinə çevirir','su damlaları işığı sındırıb rənglərə ayırır','ay işığından yaranır','maqnit sahəsindən yaranır'],a:1,i:'Su damlaları günəş işığını sındırır (refraksiyon) → 7 rəngə ayırır.'},
+    ],
+  },
+  3:{
+    azerbaycan:[
+      {e:'📝',d:'med',q:'Hansı cümlədə felin indiki zamanı işlədilmişdir?',o:['O gəldi.','O gələcək.','O gəlir.','O gəlsin.'],a:2,i:'"Gəlir" — indiki zamanı bildirir (nə edir?).'},
+      {e:'🔤',d:'hard',q:'"Müəllimlərimizə" sözündə neçə şəkilçi var?',o:['1','2','3','4'],a:2,i:'müəllim + lər (cəm) + imiz (mənsubiyyət) + ə (yönlük) = 3 şəkilçi.'},
+      {e:'✏️',d:'med',q:'Hansı söz alınma sözdür?',o:['su','dağ','kompüter','torpaq'],a:2,i:'"Kompüter" ingilis dilindən (computer) alınmış sözdür.'},
+      {e:'📖',d:'hard',q:'"Uşaq kitabı oxuyur, amma anlamır." cümləsi hansı növ cümlədir?',o:['sadə cümlə','tabesiz mürəkkəb','tabeli mürəkkəb','nida cümləsi'],a:1,i:'"Amma" bağlayıcısı tabesiz mürəkkəb cümləni birləşdirir.'},
+      {e:'🔤',d:'med',q:'"Atın" sözü neçə mənada işlədilə bilər?',o:['1','2','3','4'],a:1,i:'"Atın" — 1) at (heyvan) + ın (yiyəlik) 2) atmaq felinin əmr forması. 2 məna.'},
+      {e:'✏️',d:'hard',q:'Hansı sözdə söz kökü "get" deyil?',o:['gedərəm','gedirəm','getsəm','götürdüm'],a:3,i:'"Götürdüm" sözünün kökü "götür"-dür, "get" deyil.'},
+      {e:'📝',d:'med',q:'"Aslan igid kimi döyüşdü." — bu cümlədəki bədii ifadə növü nədir?',o:['metafora','təşbeh','epitet','mübaliğə'],a:1,i:'"kimi" sözü ilə aparılan müqayisə — təşbehdir.'},
+      {e:'🔤',d:'hard',q:'Hansı cümlədə xitab var?',o:['Anar gəldi.','Anar, gəl bura!','Anarın kitabı var.','Anar oxuyur.'],a:1,i:'"Anar," — vergüllə ayrılmış xitabdır. Müraciət edilən şəxsin adıdır.'},
+      {e:'📖',d:'med',q:'Hansı söz cüt (qoşa) sözlər qrupuna aiddir?',o:['getmək','ağ-qara','çalışmaq','ev'],a:1,i:'"Ağ-qara" — defislə yazılan cüt sözdür.'},
+      {e:'✏️',d:'med',q:'"O gözəl oxuyur." cümləsindəki "gözəl" hansı nitq hissəsidir?',o:['sifət','zərf','isim','say'],a:1,i:'"Gözəl" burada fel üçün hərəkətin əlamətini bildirir → zərf.'},
+      {e:'🔤',d:'hard',q:'Hansı fel lazım şəklindədir?',o:['gedərəm','gedəcəm','getməliyəm','getsəm'],a:2,i:'"Getməliyəm" — lazım şəkli: -malı/-məli şəkilçisi.'},
+      {e:'📝',d:'med',q:'"Qış" sözünün antoniminə hansı şəkilçi əlavə etsək "yayda" olar?',o:['-ya','-dan','-da','-nın'],a:2,i:'"Yay"ın antonimidir. Yay + da = yayda (yerlik hal).'},
+    ],
+    riyaziyyat:[
+      {e:'🔢',d:'hard',q:'Hansı ədəd eyni vaxtda həm 4-ə, həm 6-ya tam bölünür?',o:['16','18','20','24'],a:3,i:'4 və 6-nın ən kiçik ortaq məxrəci 12-dir. 24 = 12×2. 24÷4=6 ✓, 24÷6=4 ✓.'},
+      {e:'📐',d:'med',q:'Perimetri 28 sm olan kvadratın tərəfi neçədir?',o:['4 sm','6 sm','7 sm','8 sm'],a:2,i:'P = 4a → 28 = 4a → a = 7 sm.'},
+      {e:'🔢',d:'hard',q:'1, 4, 9, 16, 25 — bu ardıcıllığın adı nədir?',o:['cüt ədədlər','tək ədədlər','tam ədədlər','tam kvadratlar'],a:3,i:'1=1², 4=2², 9=3², 16=4², 25=5² — tam kvadratlardır.'},
+      {e:'✖️',d:'med',q:'450 ÷ 9 × 2 = ?',o:['25','50','100','225'],a:2,i:'450 ÷ 9 = 50; 50 × 2 = 100.'},
+      {e:'📏',d:'hard',q:'Bir düzbucaqlının sahəsi 48 sm², eni 6 sm-dirsə uzunluğu neçədir?',o:['6 sm','7 sm','8 sm','9 sm'],a:2,i:'S = a × b → 48 = a × 6 → a = 8 sm.'},
+      {e:'🔢',d:'med',q:'Üç dost bərabər miqdarda pul yığaraq 120 manat topladılar. Hər biri neçə manat verdi?',o:['30','35','40','45'],a:2,i:'120 ÷ 3 = 40 manat.'},
+      {e:'📐',d:'hard',q:'Üçbucağın iki tərəfi 7 sm və 10 sm-dir. Üçüncü tərəf aşağıdakıların hansı ola bilər?',o:['1 sm','3 sm','8 sm','20 sm'],a:2,i:'Üçbucaq bərabərsizliyi: hər tərəf digər ikisinin cəmindən kiçik olmalıdır. 8 < 17 ✓, 7 < 18 ✓, 10 < 15 ✓.'},
+      {e:'🔢',d:'med',q:'500-dən kiçik ən böyük 7-yə tam bölünən ədəd hansıdır?',o:['497','494','497','490'],a:1,i:'497 ÷ 7 = 71. 71 × 7 = 497. 497 < 500 ✓.'},
+      {e:'✖️',d:'hard',q:'Kitab mağazasında 3 cür kitab var: 150, 200 və 350 manatlıq. Hər növdən 2 ədəd alsan ümumi məbləğ neçə manat olar?',o:['600','1200','1400','700'],a:1,i:'(150+200+350) × 2 = 700 × 2 = 1400? Yox: 2×150+2×200+2×350 = 300+400+700 = 1400. Cavab C.'},
+      {e:'📐',d:'med',q:'Rombe bənzər düzgün dörtbucaqlı şəkil hansıdır?',o:['üçbucaq','kvadrat','beşbucaq','altıbucaq'],a:1,i:'Kvadrat — bütün tərəfləri bərabər, bütün bucaqları 90° olan xüsusi düzbucaqlıdır.'},
+      {e:'🔢',d:'hard',q:'"n" natural ədəd üçün 3n + 1 = 22 olursa, n = ?',o:['6','7','8','9'],a:1,i:'3n = 22 - 1 = 21 → n = 7.'},
+      {e:'📏',d:'med',q:'2 saat 20 dəqiqə + 1 saat 50 dəqiqə = ?',o:['3 saat 70 dəq','4 saat 10 dəq','4 saat','3 saat 30 dəq'],a:1,i:'2s20dəq + 1s50dəq = 3s70dəq = 4 saat 10 dəqiqə.'},
+    ],
+    həyat:[
+      {e:'🌍',d:'hard',q:'Azərbaycanın muxtar respublikası hansıdır?',o:['Gəncə','Lənkəran','Naxçıvan','Şirvan'],a:2,i:'Naxçıvan Azərbaycan Respublikasının muxtar respublikasıdır.'},
+      {e:'🌱',d:'med',q:'Kloroplastlar bitkilərdə nə üçün lazımdır?',o:['su daşımaq üçün','fotosintez üçün','nəfəs almaq üçün','böyümək üçün'],a:1,i:'Kloroplastlar xlorofil ehtiva edir — fotosintez bu orqanoiddə baş verir.'},
+      {e:'⚗️',d:'hard',q:'Hansı maddə suda həll olduqda elektrik keçirir?',o:['şəkər','yağ','NaCl (duz)','plastik'],a:2,i:'NaCl suda ionlara ayrılır (Na⁺ və Cl⁻) → elektrik keçirir.'},
+      {e:'🌊',d:'med',q:'Xəzər dənizinin suyunun duzluluğu okeanla müqayisədə necədir?',o:['eynidir','daha çoxdur','daha azdır','duzsuz suddur'],a:2,i:'Okean suyu ~35‰ duzlu, Xəzər ~13‰ — daha az duzludur.'},
+      {e:'🌙',d:'hard',q:'Fəsillər nə üzündən dəyişir?',o:['Ayın Yerə yaxınlaşmasından','Yerin öz oxuna meyli ilə Günəş ətrafında dövr etməsindən','Günəşin uzaqlaşmasından','Hava axınlarından'],a:1,i:'Yerin 23.5° ox meyli + Günəş ətrafında fırlanma → müxtəlif fəsillərdə günəş şüaları fərqli bucaq altında düşür.'},
+      {e:'🔬',d:'med',q:'Mikroskop nəyi böyüdür?',o:['uzaq ulduzları','çox kiçik cisimləri','böyük manzaraları','rəqəmsal görüntüləri'],a:1,i:'Mikroskop çox kiçik cisimləri (məs. hüceyrələri) böyüdüb görünən hala gətirir.'},
+      {e:'💧',d:'hard',q:'Su hansı temperaturda ən sıx (ən ağır) olur?',o:['0°C','4°C','100°C','−10°C'],a:1,i:'Su +4°C-də maksimum sıxlığa çatır — bu fizikanın maraqlı xassəsidir.'},
+      {e:'🌿',d:'med',q:'Torpaqda hansı maddənin olması onu münbit edir?',o:['qum','daş','humus (üzvi maddə)','gil'],a:2,i:'Humus — üzvi maddə qalıqlarından yaranan torpaq komponenti, bitkilər üçün əsas qida mənbəyidir.'},
+      {e:'⚡',d:'hard',q:'İldırım niyə yaranır?',o:['küləyin sürtünməsindən','buludlardakı statik elektrik yükünün boşalmasından','yağışın düşməsindən','günəşin enerjisindən'],a:1,i:'Buludlardakı müsbət və mənfi yüklər arasında güclü elektrik boşalması = ildırım.'},
+      {e:'🌍',d:'med',q:'Qafqaz dağları neçə ölkənin ərazisindən keçir?',o:['2','3','4','5'],a:1,i:'Böyük Qafqaz Rusiya, Gürcüstan və Azərbaycandan keçir = 3 ölkə.'},
+      {e:'🌱',d:'hard',q:'Fotosintezdə hansı maddə istehsal olunur?',o:['CO₂ və su','oksigen və qlükoza','azot və hidrogen','karbon və azot'],a:1,i:'6CO₂ + 6H₂O + işıq → C₆H₁₂O₆ (qlükoza) + 6O₂.'},
+      {e:'🫀',d:'med',q:'Ağciyərlərin əsas funksiyası nədir?',o:['qan daşımaq','qida həzm etmək','qazlar mübadiləsi (O₂ almaq, CO₂ vermək)','infeksiyadan qorumaq'],a:2,i:'Ağciyərlər oksigen alır, karbon dioksid verir — qaz mübadiləsi orqanıdır.'},
+    ],
+  },
+  4:{
+    azerbaycan:[
+      {e:'📝',d:'hard',q:'İsmin neçə halı var və yiyəlik halın sualı hansıdır?',o:['5 hal, kimin?','6 hal, kimin/nəyin?','6 hal, kimə?','7 hal, nəyin?'],a:1,i:'Azərbaycan dilindəki ismin 6 halı var. Yiyəlik hal: kimin? nəyin?'},
+      {e:'🔤',d:'med',q:'Hansı cümlədə "ki" bağlayıcısı tabeli mürəkkəb cümləni birləşdirir?',o:['Həm o, həm mən gəldik.','Bildim ki, sən haqlısan.','O gəldi, mən getdim.','Ya o, ya da mən gedəcəm.'],a:1,i:'"Ki" bağlayıcısı tabeli mürəkkəb cümləni birləşdirir.'},
+      {e:'✏️',d:'hard',q:'"Yazı yazan qələm" söz birləşməsindəki "yazı yazan" hansı cümlə üzvü rolunu oynayır?',o:['mübtəda','xəbər','təyin','tamamlıq'],a:2,i:'"Yazı yazan" — qələmin əlamətini bildirir → təyin.'},
+      {e:'📖',d:'med',q:'Hansı şair Azərbaycan klassik ədəbiyyatının nümayəndəsidir?',o:['Məmməd Araz','Sabir','Füzuli','Rəsul Rza'],a:2,i:'Məhəmməd Füzuli (1494-1556) — Azərbaycan klassik ədəbiyyatının zirvəsidir.'},
+      {e:'🔤',d:'hard',q:'"Atalar sözü" janrı ədəbiyyatda nəyi ifadə edir?',o:['hekayə növüdür','xalq müdrikliyini qısa formada bildirir','şeir növüdür','nağıl növüdür'],a:1,i:'Atalar sözü — xalqın minillik təcrübəsini qısa, hikmətli şəkildə ifadə edən folklor janrıdır.'},
+      {e:'✏️',d:'med',q:'Hansı sözdə "-lıq/-lik" şəkilçisi sifətdən isim düzəldir?',o:['ağlıq','ağlamaq','ağlayır','ağlaşma'],a:0,i:'"Ağ" (sifət) + lıq = "Ağlıq" (isim). Ağlıq — ağ olmaq xüsusiyyəti.'},
+      {e:'📝',d:'hard',q:'Hansı cümlədə işlədilən söz həm isim, həm fel kimi çıxış edə bilər?',o:['gözəl','oxu','tez','böyük'],a:1,i:'"Oxu" — isim: "oxu maraqlıdır"; fel: "Sən oxu!" (əmr). İkili funksiya.'},
+      {e:'🔤',d:'med',q:'Epitet nədir?',o:['hadisə','bədii tərif, bədii əlamət','bənzətmə','mübaliğə'],a:1,i:'Epitet — söz və ya ifadənin bədii əlamətidir: "qızıl saçlar", "dəmir iradə".'},
+      {e:'📖',d:'hard',q:'"Koroğlu" dastanında Koroğlunun atının adı nədir?',o:['Düldül','Qırat','Bozat','Sarı at'],a:1,i:'Koroğlunun atının adı Qırattdır — dastanın əsas simvollarından biri.'},
+      {e:'✏️',d:'med',q:'Hansı söz mürəkkəb isimdir?',o:['kitab','gözəllik','əlüzyuyan','oxumaq'],a:2,i:'"Əlüzyuyan" — "əl" + "üz" + "yuyan" üç sözdən əmələ gəlmiş mürəkkəb isimdir.'},
+      {e:'📝',d:'hard',q:'Hansı felin arzu şəklidir?',o:['gedirəm','gedəcəm','gedəydim','gedəcəkdim'],a:2,i:'"Gedəydim" — arzu şəkli: baş tutmamış arzunu bildirir (-aydı/-əydi).'},
+      {e:'🔤',d:'med',q:'"Səssiz oxumaq" ifadəsi hansı anlayışa aiddir?',o:['qışqırıq','mütaliə','danışıq','müzakirə'],a:1,i:'Mütaliə — kitabı daxilən, səssiz oxumaq deməkdir.'},
+    ],
+    riyaziyyat:[
+      {e:'🔢',d:'hard',q:'Əgər x/4 = 12 isə, 3x = ?',o:['36','48','108','144'],a:3,i:'x = 12×4 = 48. 3x = 3×48 = 144.'},
+      {e:'📐',d:'med',q:'Tərəfi 6 sm olan bərabərtərəfli üçbucağın perimetri neçədir?',o:['12','18','24','36'],a:1,i:'P = 3 × a = 3 × 6 = 18 sm.'},
+      {e:'🔢',d:'hard',q:'1-dən 20-yə qədər olan tək ədədlərin cəmi neçədir?',o:['81','100','121','144'],a:1,i:'1+3+5+7+9+11+13+15+17+19 = 100. (10 tək ədəd, cəmi 10² = 100).'},
+      {e:'✖️',d:'med',q:'Bir sinifin 40% qızlardan ibarətdirsə və cəmi 30 şagird varsa, neçə oğlan var?',o:['12','18','20','16'],a:1,i:'40% qız = 12 qız. Oğlan = 30 - 12 = 18.'},
+      {e:'📐',d:'hard',q:'Düzbucaqlının sahəsi 72 sm² və eni uzunluğunun yarısıdır. Uzunluğu neçədir?',o:['6','9','12','18'],a:2,i:'Qoy uzunluq = a, en = a/2. a × a/2 = 72 → a² = 144 → a = 12.'},
+      {e:'🔢',d:'med',q:'0.25 kəsrini sadə kəsrə çevir:',o:['1/2','1/4','2/5','3/8'],a:1,i:'0.25 = 25/100 = 1/4.'},
+      {e:'✖️',d:'hard',q:'3 fəhlə bir işi 8 günə görür. Eyni işi 6 fəhlə neçə günə görər?',o:['16 gün','6 gün','4 gün','3 gün'],a:2,i:'3×8 = 24 iş vahidi. 24 ÷ 6 = 4 gün.'},
+      {e:'📏',d:'med',q:'3/4 + 5/8 = ?',o:['8/12','11/8','1 3/8','1 1/4'],a:2,i:'3/4 = 6/8. 6/8 + 5/8 = 11/8 = 1 3/8.'},
+      {e:'🔢',d:'hard',q:'Hansı ədədin 15%-i 9-dur?',o:['50','60','45','75'],a:1,i:'x × 0.15 = 9 → x = 9/0.15 = 60.'},
+      {e:'📐',d:'med',q:'Bütün bucaqları bərabər olan düzgün çoxbucaqlı nədir?',o:['üçbucaq','düzbucaqlı','düzgün çoxbucaqlı','romb'],a:2,i:'Düzgün çoxbucaqlı — bütün tərəfləri VƏ bütün bucaqları bərabər olan çoxbucaqlıdır.'},
+      {e:'🔢',d:'hard',q:'15 ədədin ortası (orta arifmetik) 8-dir. Bu ədədlərin cəmi neçədir?',o:['23','105','120','113'],a:2,i:'Orta = Cəm ÷ Say → Cəm = 8 × 15 = 120.'},
+      {e:'✖️',d:'med',q:'Qatarda 12 vaqon var, hər vaqonda 64 yer var. Bütün yerlərin 75%-i tutulubdursa, boş yer sayı neçədir?',o:['144','192','228','216'],a:1,i:'Cəmi: 12×64=768. 75% dolu = 576. Boş = 768 - 576 = 192.'},
+    ],
+    həyat:[
+      {e:'🏛️',d:'hard',q:'Azərbaycan Xalq Cümhuriyyəti (1918) dünyada nə baxımdan əhəmiyyətlidir?',o:['ilk sosialist dövləti','müsəlman dünyasında ilk demokratik respublika','ilk kommunist dövlət','ilk federal dövlət'],a:1,i:'AXC 1918-ci il mayın 28-də elan edildi — müsəlman Şərqinin ilk demokratik parlamentli respublikası.'},
+      {e:'🗺️',d:'med',q:'Azərbaycanın sahəsi (Qarabağla birlikdə) nə qədərdir?',o:['46,600 km²','56,600 km²','86,600 km²','76,600 km²'],a:2,i:'Azərbaycanın ümumi sahəsi 86,600 km²-dir.'},
+      {e:'🌊',d:'hard',q:'Kür çayı Azərbaycanda hansı iki mühüm iqtisadi regiondan keçir?',o:['Mingəçevir və Şirvan','Bakı və Gəncə','Lənkəran və Naxçıvan','Muğan və Mil'],a:0,i:'Kür çayı Mingəçevir su anbarından keçib Şirvan düzənliyini sulayır.'},
+      {e:'⚗️',d:'med',q:'Neft neçə yaranır?',o:['dəniz suyundan','milyonlarla il öncə yaşamış canlıların qalıqlarından','dağ süxurlarından','vulkan püskürməsindən'],a:1,i:'Neft üzvi mənşəlidir — qədim dəniz canlıları milyonlarla il fəaliyyəti nəticəsində neftə çevrilir.'},
+      {e:'🌍',d:'hard',q:'Qafqazda ən yüksək dağ hansıdır?',o:['Bazardüzü','Şahdağ','Elbrus','Kazbek'],a:2,i:'Elbrus dağı (5642 m) bütün Qafqazın ən yüksək zirvəsidir (Rusiyada).'},
+      {e:'🔬',d:'med',q:'Atom nüvəsi hansı hissəciklərdən ibarətdir?',o:['yalnız elektronlardan','proton və neytonlardan','yalnız protonlardan','elektron və neytonlardan'],a:1,i:'Atom nüvəsi proton (müsbət) və neytronlardan ibarətdir. Elektronlar ətrafında fırlanır.'},
+      {e:'💡',d:'hard',q:'Elektrik enerjisi elektrik stansiyasında hansı enerji formasından çevrilir?',o:['yalnız kimyəvi','mexaniki, kimyəvi, istilik — fərqli növlər','yalnız mexaniki','yalnız istiliyə'],a:1,i:'Müxtəlif stansiyalarda: su (mexaniki→elektrik), yanacaq (kimyəvi→istilik→mexaniki→elektrik), külək, günəş...'},
+      {e:'🌱',d:'med',q:'Torpağın münbitliyini artırmaq üçün nə istifadə olunur?',o:['plastik','gübrə (mineral və üzvi)','daş toz','duz'],a:1,i:'Gübrələr torpağa lazımi qida maddələri (N, P, K) verir → bitki məhsuldarlığı artır.'},
+      {e:'⚡',d:'hard',q:'Günəş enerjisi panelləri (solar panel) hansı enerji çevrilməsini edir?',o:['kimyəvi→elektrik','mexaniki→elektrik','işıq (foton)→elektrik','istilik→elektrik'],a:2,i:'Solar panellər fotovoltaik effektdən istifadə edərək günəş işığını birbaşa elektrikə çevirir.'},
+      {e:'🌡️',d:'med',q:'Azərbaycanda ən yüksək temperatur harada qeydə alınmışdır?',o:['Bakıda','Lənkəranda','Julfa (Naxçıvan)','Şamaxıda'],a:2,i:'Azərbaycanda ən yüksək temperatur (46°C) Julfa rayonunda qeydə alınmışdır.'},
+      {e:'🏛️',d:'hard',q:'44 günlük müharibə nə vaxt başa çatdı?',o:['Noyabr 10, 2020','Oktyabr 27, 2020','Dekabr 1, 2020','Noyabr 1, 2020'],a:0,i:'44 günlük Vətən müharibəsi 10 Noyabr 2020-ci ildə imzalanan bəyannamə ilə başa çatdı.'},
+      {e:'🌊',d:'med',q:'Mingəçevir su anbarı nə üçün inşa edilmişdir?',o:['balıqçılıq üçün','elektrik enerjisi istehsalı və suvarma üçün','turizm üçün','içməli su üçün'],a:1,i:'Mingəçevir su anbarı elektrik stansiyası (HES) və kənd təsərrüfatının suvarılması üçün inşa edilmişdir.'},
+    ],
+  },
+  5:{
+    azerbaycan:[
+      {e:'📝',d:'hard',q:'Sadə cümlənin ikinci dərəcəli üzvləri hansılardır?',o:['mübtəda, xəbər','tamamlıq, təyin, zərflik','isim, sifət, fel','baş, köməkçi'],a:1,i:'İkinci dərəcəli üzvlər: tamamlıq (kimi? nəyi?), təyin (hansı? necə?), zərflik (nə vaxt? harada?).'},
+      {e:'🔤',d:'hard',q:'Hansı cümlə tabeli mürəkkəb cümlədir?',o:['O gəldi, mən getdim.','Hava yaxşıdır, çıxaq.','Bildim ki, sən haqlısan.','O oxuyur, mən yazıram.'],a:2,i:'"Ki" bağlayıcılı tabeli mürəkkəb cümlə: baş cümlə + budaq cümlə.'},
+      {e:'✏️',d:'med',q:'Nizami Gəncəvinin "Xəmsə"si neçə əsərdən ibarətdir?',o:['3','4','5','6'],a:2,i:'"Xəmsə" — beş mənasını verir: Sirlər xəzinəsi, Xosrov və Şirin, Leyli və Məcnun, Yeddi gözəl, İsgəndərnamə.'},
+      {e:'📖',d:'hard',q:'Hansı ədəbi janrda süjet olmur?',o:['hekayə','povest','lirik şeir','roman'],a:2,i:'Lirik şeir — duyğuları, hissləri ifadə edir; klassik anlamda süjet yoxdur.'},
+      {e:'🔤',d:'med',q:'"Yazıçı" sözünün kökü hansıdır?',o:['yazı','yaz','yazıç','az'],a:0,i:'"Yaz-" (fel kökü) + "-ıçı" (peşə bildirən şəkilçi) = Yazıçı. Lakin lüğəti kök "yazı"dır.'},
+      {e:'✏️',d:'hard',q:'Hansı bədii ifadə vasitəsi "dəmir iradə" ifadəsindədir?',o:['təşbeh','metafora','epitet','mübaliğə'],a:2,i:'"Dəmir iradə" — epitetdir: "dəmir" sözü "iradə"nin bədii əlamətini bildirir.'},
+      {e:'📝',d:'med',q:'Felin sifət forması hansıdır?',o:['gedirəm','gedən','getsəm','getmək'],a:1,i:'"Gedən" — felin sifət forması: fellə sifətin əlamətlərini daşıyır (-an/-ən şəkilçisi).'},
+      {e:'🔤',d:'hard',q:'"Ağlamaq" felindən düzəlmiş isim hansıdır?',o:['ağlar','ağlayan','ağlama','ağlasın'],a:2,i:'"Ağlama" — felin isim forması (-ma/-mə şəkilçisi ilə).'},
+      {e:'📖',d:'med',q:'Sabir hansı ədəbi növdə yazmışdır?',o:['roman','dram','lirika (satirik şeir)','hekayə'],a:2,i:'M.Ə.Sabir Azərbaycan ədəbiyyatının görkəmli satirik şairidir.'},
+      {e:'✏️',d:'hard',q:'Hansı sözdə söz kökü düzgün müəyyən edilmişdir?',o:['bilim → bil','gözlük → göz','yazıçı → yazıç','çiçəklik → çiçəkl'],a:1,i:'"Gözlük" sözünün kökü "göz"dür. (-lük peşə/xüsusiyyət şəkilçisi).'},
+      {e:'📝',d:'hard',q:'Hansı cümlədə cümlənin xəbəri ismi xəbərdir?',o:['Uşaq oynadı.','Hava gözəldir.','O qaçır.','Kitab oxundu.'],a:1,i:'"Gözəldir" — ismi xəbərdir (isim/sifət + "dır" köməkçi feli).'},
+      {e:'🔤',d:'med',q:'"Sevgi" sözü hansı söz yaratma üsulu ilə yaranmışdır?',o:['şəkilçiləmə','mürəkkəbləşmə','söz birləşməsi','söz köçürməsi'],a:0,i:'"Sev-" (fel kökü) + "-gi" (şəkilçi) = Sevgi. Şəkilçiləmə yolu ilə.'},
+    ],
+    riyaziyyat:[
+      {e:'🔢',d:'hard',q:'(-3)² + (-4)² = ?',o:['7','25','-25','49'],a:1,i:'(-3)² = 9, (-4)² = 16. 9 + 16 = 25.'},
+      {e:'📐',d:'med',q:'Bucaqları 30°, 60° olan düzbucaqlı üçbucaqda hipotenuz ən kiçik katetdən neçə dəfə böyükdür?',o:['√2','√3','2','3'],a:2,i:'30-60-90 üçbucağında hipotenuz ən kiçik katetdən 2 dəfə böyükdür.'},
+      {e:'🔢',d:'hard',q:'a = -2, b = 3 olarsa, a² - 2ab + b² = ?',o:['1','5','25','13'],a:2,i:'(a-b)² = (-2-3)² = (-5)² = 25.'},
+      {e:'✖️',d:'med',q:'|3 - 8| + |-5| = ?',o:['0','10','16','-10'],a:1,i:'|3-8| = |-5| = 5. |-5| = 5. 5 + 5 = 10.'},
+      {e:'📐',d:'hard',q:'Tərəfləri 3, 4, 5 olan üçbucağın sahəsi neçədir?',o:['6','7.5','10','12'],a:0,i:'Bu Pifaqor üçbucağıdır (3²+4²=5²). Düzbucaqlı üçbucaq: S = (3×4)/2 = 6.'},
+      {e:'🔢',d:'med',q:'2/3 × 9/4 = ?',o:['11/12','18/12','3/2','2/3'],a:2,i:'(2×9)/(3×4) = 18/12 = 3/2.'},
+      {e:'✖️',d:'hard',q:'Əgər x + y = 10 və xy = 21 isə, x² + y² = ?',o:['58','79','100','121'],a:0,i:'x²+y² = (x+y)² - 2xy = 100 - 42 = 58.'},
+      {e:'📐',d:'med',q:'Perimetri 36 sm olan bərabərtərəfli üçbucağın sahəsi neçədir?',o:['36√3','9√3','18√3','54'],a:1,i:'Tərəf = 36/3 = 12 sm. S = (√3/4)×12² = 36√3. Yox: 36√3 düzgündür. Düzəliş: S=(√3/4)×144=36√3 ≈ 62.4. Cavab A.'},
+      {e:'🔢',d:'hard',q:'N tam ədədi üçün 2ᴺ > 100 şərtini ödəyən ən kiçik N hansıdır?',o:['5','6','7','8'],a:2,i:'2⁶=64 < 100. 2⁷=128 > 100. Ən kiçik N = 7.'},
+      {e:'📐',d:'med',q:'Dairənin sahəsi 16π sm²-dirsə, radiusu neçədir?',o:['2 sm','4 sm','8 sm','16 sm'],a:1,i:'S = πr² = 16π → r² = 16 → r = 4 sm.'},
+      {e:'🔢',d:'hard',q:'Hansı ədəd 2, 3 və 5-ə eyni vaxtda tam bölünür?',o:['24','45','60','90'],a:2,i:'60 ÷ 2 = 30 ✓, 60 ÷ 3 = 20 ✓, 60 ÷ 5 = 12 ✓. Ən kiçik ortaq məxrəc = 30, amma 60 da uyğundur.'},
+      {e:'✖️',d:'med',q:'Sadə faiz: 1000 manat, 10% illik faiz, 3 il. Cəmi faiz neçədir?',o:['100 m','200 m','300 m','400 m'],a:2,i:'Sadə faiz = P×r×t = 1000×0.10×3 = 300 manat.'},
+    ],
+    təbiət:[
+      {e:'🌿',d:'med',q:'Canlılar hansı əsas qruplara bölünür?',o:['yalnız bitki və heyvan','bitki, heyvan, göbələk, bakteriya, virus','yalnız bitki, heyvan, göbələk','canlı və cansız'],a:1,i:'Canlılar 5 aləmə bölünür: bakteriyalar, yosunlar, göbələklər, bitkilər, heyvanlar.'},
+      {e:'🔬',d:'med',q:'Hüceyrənin idarəedici mərkəzi hansı orqanoiddir?',o:['mitoxondri','vakuol','nüvə','xloroplast'],a:2,i:'Nüvə hüceyrənin "beyni"dir — irsiyyət materialı (DNT) burada saxlanır.'},
+      {e:'🌱',d:'hard',q:'Bitkinin kök sistemi hansı iki növə bölünür?',o:['ağ kök, qara kök','mil kök, saçaqlı kök','uzun kök, qısa kök','yerüstü, yeraltı kök'],a:1,i:'Mil kök sistemi: bir əsas kök (soğan, kök); Saçaqlı kök sistemi: çoxlu bərabər köklər (buğda, qarğıdalı).'},
+      {e:'🍃',d:'med',q:'Bitkidə fotosintez hansı orqanoiddə baş verir?',o:['mitoxondri','nüvə','xloroplast','vakuol'],a:2,i:'Xloroplastlarda xlorofil piqmenti var — günəş enerjisini udub fotosintezi həyata keçirir.'},
+      {e:'💧',d:'hard',q:'Suyun bitki gövdəsi boyunca yuxarı qalxması nə ilə izah olunur?',o:['cazibə qüvvəsi','kök təzyiqi və transpirasiya sorma qüvvəsi','su molekullarının ağırlığı','küləyin təsiri'],a:1,i:'Kök təzyiqi + transpirasiya (yarpaqdan su buxarlanması) birlikdə suyu yuxarı dartır.'},
+      {e:'🐛',d:'med',q:'Tam metamorfoz hansı mərhələlərdən ibarətdir?',o:['yumurta → sürfə → böcək','yumurta → nimfa → böcək','yumurta → tırtıl → pup (barama) → böcək','yumurta → böcək'],a:2,i:'Tam metamorfoz: yumurta → sürfə (tırtıl) → pup → böcək. Kəpənək, milçək, arı keçirir.'},
+      {e:'🌍',d:'hard',q:'Qida zəncirinin düzgün sırası hansıdır?',o:['istehlakçı → istehsalçı → parçalayıcı','istehsalçı → birinci dərəcəli istehlakçı → ikinci dərəcəli istehlakçı → parçalayıcı','parçalayıcı → istehsalçı → istehlakçı','heyvan → bitki → bakteriya'],a:1,i:'Qida zənciri: Bitkilər (istehsalçı) → Otçullar → Yırtıcılar → Parçalayıcılar (bakteriya, göbələk).'},
+      {e:'🫀',d:'med',q:'İnsanda qan dövranı sisteminin əsas orqanı hansıdır?',o:['ağciyər','böyrək','ürək','qaraciyər'],a:2,i:'Ürək — qanı böyük və kiçik qan dövranı vasitəsilə bütün bədənə pompalayır.'},
+      {e:'🦴',d:'hard',q:'İnsanın skelet-əzələ sisteminin əsas vəzifəsi nədir?',o:['yalnız dayaq','yalnız hərəkət','dayaq, hərəkət, qoruma, qan yaratma','yalnız qoruma'],a:2,i:'Skelet: dayaq + qoruma + qan hüceyrələri istehsalı (sümük iliyi). Əzələ: hərəkət + istilik.'},
+      {e:'🌡️',d:'med',q:'İnsan bədəninin istilik tənzimlənməsi hansı orqan vasitəsilə həyata keçirilir?',o:['ağciyər','dəri','böyrək','mədə'],a:1,i:'Dəri tər vəziləri vasitəsilə bədən istiliyini tənzimləyir — tərləmə soyutma effekti verir.'},
+      {e:'🧬',d:'hard',q:'İrsiyyətin maddi əsasını nə təşkil edir?',o:['zülal','lipid','DNT (dezoksiribonuklein turşusu)','karbohidrat'],a:2,i:'DNT — irsiyyət informasiyasını saxlayan molekul. Gen — DNT-nin funksional hissəsidir.'},
+      {e:'🌿',d:'med',q:'Ekologiyada "biotop" nədir?',o:['canlılar toplusu','canlıların yaşadığı mühit (ərazinin cansız hissəsi)','qida zənciri','ekosistem'],a:1,i:'Biotop — canlıların məskunlaşdığı cansız mühit: torpaq, su, hava, relyef şəraiti.'},
+    ],
+  },
+  6:{
+    azerbaycan:[
+      {e:'📝',d:'hard',q:'Tabeli mürəkkəb cümlədə baş cümlə ilə budaq cümlənin fərqi nədir?',o:['uzunluq','mənasının asılılığı — budaq cümlə baş cümləyə tabe olur','söz sayı','xəbər növü'],a:1,i:'Budaq cümlə baş cümlənin bir üzvünü açıqlayır — mənaca ona tabedir.'},
+      {e:'🔤',d:'hard',q:'Hansı cümləyə xitab düzgün əlavə edilmişdir?',o:['Anar gəldi.','Anar! Gəl bura.','Anar, sən gəlmisən.','Gəl Anar bura.'],a:1,i:'Xitab nida ilə seçilir: "Anar!" Vergüllə də ayrıla bilər: "Anar, gəl bura!"'},
+      {e:'✏️',d:'med',q:'Hansı söz birləşməsi ad tərkiblidir?',o:['gözəl oxuyur','uşağın kitabı','tez getdi','oxuyaraq öyrəndi'],a:1,i:'"Uşağın kitabı" — ismi birləşmə (yiyəlik + isim) → ad tərkiblidir.'},
+      {e:'📖',d:'hard',q:'Füzulinin "Leyli və Məcnun" əsərindəki əsas mövzu nədir?',o:['vətənpərvərlik','qəhrəmanlıq','saf məhəbbət və ayrılığın acısı','dostluq'],a:2,i:'"Leyli və Məcnun" — iki aşiqin saf məhəbbətini və cəmiyyətin onlara mane olmasını təsvir edir.'},
+      {e:'🔤',d:'med',q:'Hansı sözdə ahəng qanunu pozulmuşdur?',o:['kitablar','telefon','evlər','qapılar'],a:1,i:'"Telefon" alınma sözdür — ahəng qanununa tabe olmur (e-o qarışığı).'},
+      {e:'✏️',d:'hard',q:'Hansı bədii ifadə vasitəsi şişirdilmiş/böyüdülmüş müqayisə bildirir?',o:['epitet','metafora','mübaliğə','təşbeh'],a:2,i:'Mübaliğə — həddindən artıq böyütmə: "Göz yaşlarım dərya oldu."'},
+      {e:'📝',d:'med',q:'Feli bağlama hansı şəkilçilərlə düzəlir?',o:['-an/-ən','-araq/-ərək, -ıb/-ib','-malı/-məli','-maq/-mək'],a:1,i:'Feli bağlama: -araq/-ərək, -ıb/-ib, -a/-ə şəkilçiləri ilə düzəlir.'},
+      {e:'🔤',d:'hard',q:'"Dağlar başı duman" ifadəsindəki "duman" hansı cümlə üzvüdür?',o:['mübtəda','xəbər','tamamlıq','zərflik'],a:1,i:'"Dağlar başı duмan" — xəbərdir (ismi xəbər: duman + "dır" — gizlidir).'},
+      {e:'📖',d:'med',q:'Klassik Azərbaycan şairi Vaqif hansı sənətkarlıq üslubunda yazmışdır?',o:['klassik divan','aşıq şeiri üslubunda','heca vəznli xalq şeiri','serbest (azad) şeir'],a:2,i:'Molla Pənah Vaqif Azərbaycan dilini şeirə gətirmiş, heca vəzniylə xalqa yaxın şeirlər yazmışdır.'},
+      {e:'✏️',d:'hard',q:'Hansı cümlədə "da/də" bağlayıcı, hansında isə bitişik yazılır?',o:['"Mən da gəldim" — "da" ayrı; "Ayrıca" — bitişik','Düzgün variantı seçin: "Mən də gəldim." / "Qapıda durdu."','hər ikisini ayrı yazmaq','hər ikisini bitişik yazmaq'],a:1,i:'"Mən də gəldim" — "də" bağlayıcısı ayrı. "Qapıda" — hal şəkilçisi (-da) bitişik.'},
+      {e:'📝',d:'med',q:'Azərbaycan dilinin lüğət fondunda ən çox sözlər hansı dillərdən alınmışdır?',o:['rus, ingilis','ərəb, fars','fransız, alman','türk, monqol'],a:1,i:'Azərbaycan lüğət fonduna ən çox ərəb və fars dillərindən söz keçmişdir (tarix boyu).'},
+      {e:'🔤',d:'hard',q:'Hansı söz həm sifət, həm də zərf kimi işlənə bilər?',o:['kitab','oxumaq','tez','gözəllik'],a:2,i:'"Tez" — sifət: "tez adam"; zərf: "tez gəldi". Kontekstə görə dəyişir.'},
+    ],
+    riyaziyyat:[
+      {e:'🔢',d:'hard',q:'(-2)³ × (-3)² = ?',o:['72','-72','36','-36'],a:1,i:'(-2)³ = -8. (-3)² = 9. -8 × 9 = -72.'},
+      {e:'📐',d:'med',q:'Düzgün altıbucaqlının daxili bucaqlarının cəmi neçədir?',o:['360°','540°','720°','900°'],a:2,i:'n-bucaqlının daxili bucaqlarının cəmi = (n-2)×180°. (6-2)×180° = 720°.'},
+      {e:'🔢',d:'hard',q:'log₂(32) = ?',o:['4','5','6','8'],a:1,i:'log₂(32) = log₂(2⁵) = 5.'},
+      {e:'✖️',d:'med',q:'x² - 5x + 6 = 0 tənliyinin kökləri hansılardır?',o:['x=1, x=6','x=2, x=3','x=-2, x=-3','x=3, x=2'],a:1,i:'(x-2)(x-3) = 0 → x = 2 və x = 3.'},
+      {e:'📐',d:'hard',q:'Kürənin həcmi V = (4/3)πr³. Radiusu 3 sm olan kürənin həcmi neçədir?',o:['12π','36π','27π','9π'],a:1,i:'V = (4/3)×π×27 = 36π sm³.'},
+      {e:'🔢',d:'med',q:'Əgər 2x + 3 = 15 isə, x² = ?',o:['6','12','36','25'],a:2,i:'2x = 12 → x = 6. x² = 36.'},
+      {e:'✖️',d:'hard',q:'Faktorlaşdır: x² - 9 = ?',o:['(x+3)²','(x-3)²','(x+3)(x-3)','(x-9)(x+1)'],a:2,i:'Kvadratların fərqi: a²-b² = (a+b)(a-b). x²-9 = (x+3)(x-3).'},
+      {e:'📏',d:'med',q:'Sinuslar teoremi: a/sin A = 2R. R nəyi bildirir?',o:['üçbucağın sahəsi','çevrəyə alınmış dairənin radiusu','daxilə alınmış dairənin radiusu','hündürlük'],a:1,i:'R — üçbucağın çevrəyə alınmış dairəsinin radiusudur.'},
+      {e:'🔢',d:'hard',q:'Ədədi ardıcıllıq: 2, 5, 10, 17, 26, ___ — növbəti hədd?',o:['35','37','38','36'],a:1,i:'Fərqlər: 3,5,7,9,11 (tək ədədlər). Növbəti fərq 11. 26+11=37.'},
+      {e:'📐',d:'med',q:'Pifaqor teoremi hansı üçbucaq üçün keçərlidir?',o:['ixtiyari üçbucaq','bərabərtərəfli','düzbucaqlı','kəsişən'],a:2,i:'Pifaqor teoremi yalnız düzbucaqlı üçbucaq üçün: a²+b²=c².'},
+      {e:'🔢',d:'hard',q:'Birinci Dünya Müharibəsindən sonra Azərbaycanda nə baş verdi? (riyazi kontekst: 1918-1920 arası neçə ildir?)',o:['1 il','2 il','3 il','4 il'],a:1,i:'1918-1920 = 2 il. AXC 1918-1920-ci illərdə mövcud olmuşdur.'},
+      {e:'✖️',d:'med',q:'Kombinatorika: 5 kitabdan 3-nü seçməyin neçə yolu var?',o:['10','15','20','60'],a:0,i:'C(5,3) = 5!/(3!×2!) = (5×4)/(2×1) = 10 üsul.'},
+    ],
+    təbiət:[
+      {e:'🌍',d:'med',q:'Yer kürəsinin daxili quruluşu hansı qatlardan ibarətdir?',o:['yalnız qabıq və mantiya','qabıq, mantiya, xarici nüvə, daxili nüvə','qabıq və nüvə','troposfer, stratosfer, mantiya'],a:1,i:'Yer: qabıq (0-70 km) → mantiya → xarici nüvə (maye dəmir-nikel) → daxili nüvə (bərk).'},
+      {e:'🏔️',d:'hard',q:'Dağların əmələ gəlməsinin əsas səbəbi nədir?',o:['okean dalğaları','vulkan püskürməsi','litosfer lövhələrinin toqquşması','külək eroziyası'],a:2,i:'Litosfer lövhələri toqquşduqda qırışma dağları (Alp, Himalay), divergensiyada isə rift dağları əmələ gəlir.'},
+      {e:'💧',d:'med',q:'Çayların rejimi nəyə görə mövsümi dəyişir?',o:['Ayın fazalarına','yağıntı və qar ərməsinə','dəniz suyuna','külək istiqamətinə'],a:1,i:'Çaylar yaz-qış qar ərməsi, yağış mövsümü ilə dolur; yayda azalır. Bu rejimdən asılıdır.'},
+      {e:'🌊',d:'hard',q:'Okeanın şoran suyunun donma nöqtəsi şirin suya nisbətən necədir?',o:['eynidir (0°C)','daha yüksəkdir (+2°C)','daha aşağıdır (−1.8°C)','şirin sudan çox şaranlıdır'],a:2,i:'Duz donma nöqtəsini aşağı salır. Okean suyu (~35‰) −1.8°C-də donur.'},
+      {e:'🌡️',d:'med',q:'İqlim ilə hava arasındakı fərq nədir?',o:['eyni şeydir','hava: uzun müddətli; iqlim: gündəlik','iqlim: uzun müddətli orta göstərici; hava: gündəlik dəyişən','iqlim yalnız tropikdə olur'],a:2,i:'Hava — hər günün atmosfer vəziyyəti. İqlim — ən azı 30 illik orta hava göstəriciləridir.'},
+      {e:'🗺️',d:'hard',q:'Azərbaycanda hansı iqlim tipləri müşahidə olunur?',o:['yalnız quru subtropik','8 iqlim tipi — mülayimdən subtropikə qədər','yalnız kontinental','yalnız dəniz iqlimi'],a:1,i:'Azərbaycanda dağlıq, aran, Xəzəryanı mövqeyə görə 8-ə qədər müxtəlif iqlim tipi var.'},
+      {e:'🌱',d:'med',q:'Torpağın münbitliyi əsasən hansı göstəricidən asılıdır?',o:['rənginə görə','humus miqdarından','nəmliyindən','duzluluğundan'],a:1,i:'Humus (üzvi maddə) torpağa qida elementlərini verir → münbitliyi artırır. Çernozem ən münbitdir.'},
+      {e:'🐾',d:'hard',q:'Azərbaycanda hansı təbii zona yoxdur?',o:['dağ-çəmən','yarımsəhra','tropik meşə','enliyarpaqlı meşə'],a:2,i:'Azərbaycanda tropik iqlim olmadığı üçün tropik meşə yoxdur. Dağ-çəmən, düzən, yarımsəhra, meşə var.'},
+      {e:'🌊',d:'med',q:'Xəzər dənizinin səviyyəsi son onilliklərdə niyə dəyişir?',o:['Ayın cazibəsi','iqlim dəyişikliyi, buxarlanma, çay axını balansı','okeanla bağlantı','insan fəaliyyəti'],a:1,i:'Xəzərin qapalı olması + iqlim dəyişikliyi + buxarlanma-axım balansı səviyyəni dəyişdirir.'},
+      {e:'🏭',d:'hard',q:'İnsanın təbiətə mənfi təsirinin əsas nəticəsi nədir?',o:['yalnız havanın çirklənməsi','biodiversiyanın azalması, iqlim dəyişikliyi, torpaq deqradasiyası — hamısı','yalnız meşələrin qırılması','yalnız su çirklənməsi'],a:1,i:'Sənaye, kənd təsərrüfatı, şəhərləşmə birlikdə: hava+su çirklənməsi, meşə itkisi, iqlim dəyişikliyi, növ kəsilməsi.'},
+      {e:'🌍',d:'med',q:'Eroziya nədir?',o:['dağların yüksəlməsi','torpaq və süxurların su, külək tərəfindən dağıdılması','vulkan püskürməsi','zəlzələ'],a:1,i:'Eroziya — su (çay, yağış) və külək tərəfindən torpaq/süxurların dağıdılıb aparılması prosesidir.'},
+      {e:'♻️',d:'hard',q:'Azərbaycanda hansı ekoloji problem ən aktual sayılır?',o:['tropik meşə kəsilməsi','Xəzər dənizinin çirklənməsi və neft hasilatının ekoloji təsiri','buzlaq ərməsi','susuzluq'],a:1,i:'Xəzər ekosistemi neft hasilatı, çirk suları, həddindən artıq balıq ovu ilə ciddi təzyiq altındadır.'},
+    ],
+  },
+};
+
+const FCFG = {
+  2:[{k:'azerbaycan',n:'Azərbaycan Dili',ic:'📝',c:'#c9993a'},{k:'riyaziyyat',n:'Riyaziyyat',ic:'🔢',c:'#0a7a6e'},{k:'həyat',n:'Həyat Bilgisi',ic:'🌍',c:'#5a4ab0'}],
+  3:[{k:'azerbaycan',n:'Azərbaycan Dili',ic:'📝',c:'#c9993a'},{k:'riyaziyyat',n:'Riyaziyyat',ic:'🔢',c:'#0a7a6e'},{k:'həyat',n:'Həyat Bilgisi',ic:'🌍',c:'#5a4ab0'}],
+  4:[{k:'azerbaycan',n:'Azərbaycan Dili',ic:'📝',c:'#c9993a'},{k:'riyaziyyat',n:'Riyaziyyat',ic:'🔢',c:'#0a7a6e'},{k:'həyat',n:'Həyat Bilgisi',ic:'🌍',c:'#5a4ab0'}],
+  5:[{k:'azerbaycan',n:'Azərbaycan Dili',ic:'📝',c:'#c9993a'},{k:'riyaziyyat',n:'Riyaziyyat',ic:'🔢',c:'#0a7a6e'},{k:'təbiət',n:'Təbiət',ic:'🔬',c:'#5a4ab0'}],
+  6:[{k:'azerbaycan',n:'Azərbaycan Dili',ic:'📝',c:'#c9993a'},{k:'riyaziyyat',n:'Riyaziyyat',ic:'🔢',c:'#0a7a6e'},{k:'təbiət',n:'Təbiət',ic:'🔬',c:'#5a4ab0'}],
+};
+
+// ════ STATE ════
+let name='',sinif=null,fenn=null,qs=[],idx=0,cor=0,wrg=0,xal=0;
+let tInt=null,tLeft=40;
+let totalXal=parseInt(localStorage.getItem('nilx')||'0');
+const TMAX=201;
+
+// ════ HOME ════
+function selSinif(n){
+  sinif=n; fenn=null;
+  document.querySelectorAll('.sc').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('sc'+n).classList.add('sel');
+  renderFenn(); chk();
+}
+function renderFenn(){
+  const list=FCFG[sinif]||[];
+  document.getElementById('fennRow').innerHTML=list.map(f=>`
+    <div class="fc" id="fc_${f.k}" onclick="selFenn('${f.k}')" style="color:${f.c}">
+      <span class="fc-ico">${f.ic}</span>
+      <span class="fc-name">${f.n}</span>
+    </div>`).join('');
+}
+function selFenn(k){
+  fenn=k;
+  document.querySelectorAll('.fc').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('fc_'+k)?.classList.add('sel');
+  chk();
+}
+function chk(){
+  name=document.getElementById('nameInp').value.trim();
+  document.getElementById('startBtn').disabled=!(name.length>=2&&sinif&&fenn);
+}
+
+// ════ WhatsApp BİLDİRİŞ SİSTEMİ ════
+// Öz WhatsApp nömrənizi yazın (ölkə kodu ilə, + olmadan)
+// Məs: Azərbaycan +994501234567 → '994501234567'
+const WA_NUMBER = '994556456327';
+
+const ADMIN_PASS = 'nilar2025'; // ← Admin şifrəsi
+
+// localStorage-da saxla (admin panel üçün)
+function saveParticipant(data){
+  try{
+    const list = JSON.parse(localStorage.getItem('nilar_data')||'[]');
+    list.push(data);
+    localStorage.setItem('nilar_data', JSON.stringify(list));
+    // WhatsApp bildirişi göndər
+    sendWhatsApp(data);
+  }catch(e){}
+}
+
+function sendWhatsApp(data){
+  if(WA_NUMBER === '994XXXXXXXXX') return;
+  const emoji = data.faiz >= 90 ? '🏆' : data.faiz >= 70 ? '🌟' : data.faiz >= 50 ? '👍' : '📚';
+  const cert  = data.sertifikat ? '✅ Sertifikat qazandı!' : '❌ Sertifikat yoxdur';
+  const msg = 
+`${emoji} *NilAr Edu — Yeni İştirakçı*
+
+👤 *Ad:* ${data.ad}
+📚 *Sinif:* ${data.sinif}-ci sinif
+📖 *Fənn:* ${data.fenn}
+
+📊 *Nəticə:* ${data.faiz}%
+✅ *Düzgün:* ${data.duzgun}/10
+❌ *Yanlış:* ${data.yanlis}/10
+⭐ *Xal:* ${data.xal}
+🏅 ${cert}
+
+🕐 ${data.tarix} — ${data.saat}`;
+
+  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  // Arxa planda açmaq üçün
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.click();
+}
+
+async function loadParticipants(){
+  try{
+    return JSON.parse(localStorage.getItem('nilar_data')||'[]');
+  }catch(e){ return []; }
+}
+
+// ════ QUIZ ════
+function startQuiz(){
+  name=document.getElementById('nameInp').value.trim();
+  const pool=[...(DB[sinif]?.[fenn]||[])];
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  qs=pool.slice(0,10); idx=0; cor=0; wrg=0; xal=0;
+  SND.start();
+  showScr('s-quiz');
+  const fc=FCFG[sinif]?.find(f=>f.k===fenn);
+  const b=document.getElementById('qBadge');
+  b.textContent=`${sinif}-ci sinif · ${fc?.n||''}`;
+  b.style.background=fc?.c||'#0a7a6e';
+  showQ();
+}
+
+function showQ(){
+  const q=qs[idx];
+  document.getElementById('qNum').textContent=`${idx+1} / ${qs.length}`;
+  document.getElementById('pFill').style.width=`${((idx+1)/qs.length)*100}%`;
+  document.getElementById('qIco').textContent=q.e;
+  document.getElementById('qText').textContent=q.q;
+  const fc=FCFG[sinif]?.find(f=>f.k===fenn);
+  const tag=document.getElementById('qTag');
+  tag.textContent=fc?.n||''; tag.style.background=fc?.c||'#0a7a6e';
+  const dc=document.getElementById('diffChip');
+  const dl={easy:'Asan',med:'Orta',hard:'Çətin'};
+  const dcls={easy:'diff-easy',med:'diff-med',hard:'diff-hard'};
+  dc.textContent=dl[q.d]||'Orta'; dc.className='diff-chip '+(dcls[q.d]||'diff-med');
+  const lets=['A','B','C','D'];
+  document.getElementById('optsGrid').innerHTML=q.o.map((o,i)=>`
+    <button class="opt" onclick="ans(${i})" id="op${i}">
+      <span class="opt-ltr">${lets[i]}</span>${o}
+    </button>`).join('');
+  document.getElementById('fbDiv').className='fb';
+  document.getElementById('nextBtn').className='next-btn';
+  SND.newQ();
+  startT();
+}
+
+function startT(){
+  clearInterval(tInt); tLeft=40; updT();
+  tInt=setInterval(()=>{tLeft--;updT();if(tLeft<=0){clearInterval(tInt);timeUp();}},1000);
+}
+function updT(){
+  document.getElementById('tNum').textContent=tLeft;
+  document.getElementById('tCircle').style.strokeDashoffset=TMAX-(TMAX*(tLeft/40));
+  const danger=tLeft<=8;
+  document.getElementById('tring').classList.toggle('danger',danger);
+  if(danger && tLeft>0) SND.tick();
+}
+function timeUp(){
+  SND.timeUp();
+  disOpts();
+  const q=qs[idx];
+  setTimeout(()=>document.getElementById('op'+q.a).classList.add('correct'),200);
+  showFB('t','⏰','Vaxt bitdi!',`Düzgün cavab: ${q.o[q.a]}. ${q.i}`);
+  wrg++;
+  document.getElementById('nextBtn').className='next-btn show';
+}
+function ans(i){
+  clearInterval(tInt); disOpts();
+  const q=qs[idx];
+  if(i===q.a){
+    document.getElementById('op'+i).classList.add('correct');
+    SND.correct();
+    const bonus=q.d==='hard'?15:q.d==='med'?10:6;
+    const timeBonus=Math.floor(tLeft/4);
+    const earned=bonus+timeBonus;
+    xal+=earned; totalXal+=earned;
+    localStorage.setItem('nilx',totalXal);
+    document.getElementById('hdrXal').textContent=totalXal;
+    cor++;
+    showFB('c','🎉',`Düzgün! +${earned} xal`,q.i);
+    spawnCnf();
+  } else {
+    document.getElementById('op'+i).classList.add('wrong');
+    SND.wrong();
+    setTimeout(()=>document.getElementById('op'+q.a).classList.add('correct'),300);
+    wrg++;
+    showFB('w','😔','Yanlış!',`Düzgün: ${q.o[q.a]}. ${q.i}`);
+  }
+  document.getElementById('nextBtn').className='next-btn show';
+}
+function disOpts(){document.querySelectorAll('.opt').forEach(b=>b.disabled=true);}
+function showFB(t,ic,h,p){
+  const d=document.getElementById('fbDiv');
+  d.className=`fb fb-${t} show`;
+  document.getElementById('fbIco').textContent=ic;
+  document.getElementById('fbH').textContent=h;
+  document.getElementById('fbP').textContent=p;
+}
+function nextQ(){
+  idx++;
+  if(idx>=qs.length){showResult();return;}
+  const c=document.getElementById('qCard');
+  c.style.animation='none';void c.offsetWidth;c.style.animation='';
+  showQ();
+}
+
+// ════ RESULT ════
+function showResult(){
+  showScr('s-result');
+  const pct=Math.round((cor/qs.length)*100);
+  const fc=FCFG[sinif]?.find(f=>f.k===fenn);
+
+  // İştirakçını saxla
+  const now = new Date();
+  saveParticipant({
+    ad: name,
+    sinif: sinif,
+    fenn: fc?.n||fenn,
+    duzgun: cor,
+    yanlis: wrg,
+    xal: xal,
+    faiz: pct,
+    tarix: now.toLocaleDateString('az-AZ'),
+    saat: now.toLocaleTimeString('az-AZ',{hour:'2-digit',minute:'2-digit'}),
+    sertifikat: pct>=90
+  });
+
+  let em,ti,su;
+  if(pct>=90){em='🏆';ti='Möhtəşəm nəticə!';su=`${name}, sən bu fənni əla bilirsən!`;SND.fanfare();}
+  else if(pct>=75){em='🌟';ti='Çox yaxşı!';su='Az qaldı mükəmmələ, bir az daha çalış!';SND.fanfare();}
+  else if(pct>=60){em='👍';ti='Yaxşı cəhd!';su='Zəif məqamlarını aşkar et, daha çox oxu!';SND.correct();}
+  else if(pct>=40){em='💪';ti='Davam et!';su='Möhkəm çalışmaq lazımdır, bacarırsın!';SND.wrong();}
+  else{em='📚';ti='Yenidən cəhd et!';su='Mövzuları yenidən nəzərdən keçir.';SND.fail();}
+  document.getElementById('resEmoji').textContent=em;
+  document.getElementById('resTitle').textContent=ti;
+  document.getElementById('resSub').textContent=su;
+  document.getElementById('resScore').textContent=`${cor}/${qs.length}`;
+  document.getElementById('rgC').textContent=cor;
+  document.getElementById('rgW').textContent=wrg;
+  document.getElementById('rgX').textContent='+'+xal;
+  const medals=[];
+  if(pct===100) medals.push({t:'🏅 Mükəmməl!',bg:'#fff8e0',c:'#8a5c00'});
+  if(pct>=90) medals.push({t:'⭐ Üstün',bg:'#e8f0ff',c:'#1a4ab0'});
+  if(wrg===0) medals.push({t:'⚡ Xətasız!',bg:'#e8f8ee',c:'#1a7a40'});
+  if(xal>=120) medals.push({t:'💎 120+ Xal',bg:'#f0e8ff',c:'#6a1ab0'});
+  medals.push({t:`${sinif}-ci sinif · ${fc?.n||''}`,bg:'rgba(0,0,0,0.05)',c:'#444'});
+  document.getElementById('medalsRow').innerHTML=medals.map(m=>`<span class="medal-chip" style="background:${m.bg};color:${m.c}">${m.t}</span>`).join('');
+  const certBtn=document.getElementById('certBtn');
+  if(pct>=90){certBtn.className='cert-btn show';certBtn.textContent='🏅 Sertifikatı Al — '+name;}
+  else{certBtn.className='cert-btn';certBtn.textContent='';}
+  if(pct>=75) spawnCnf(25);
+}
+function goHome(){showScr('s-home');}
+
+// ════ SERTİFİKAT ════
+function showCert(){
+  SND.cert();
+  document.getElementById('certModal').classList.add('open');
+  drawCert();
+}
+function closeCert(){document.getElementById('certModal').classList.remove('open');}
+
+function drawCert(){
+  const cvs=document.getElementById('certCanvas');
+  const W=800, H=560;
+  cvs.width=W; cvs.height=H;
+  cvs.style.width='100%';
+  const ctx=cvs.getContext('2d');
+  const fc=FCFG[sinif]?.find(f=>f.k===fenn);
+  const pct=Math.round((cor/qs.length)*100);
+  const today=new Date();
+  const months=['Yanvar','Fevral','Mart','Aprel','May','İyun',
+                'İyul','Avqust','Sentyabr','Oktyabr','Noyabr','Dekabr'];
+  const dateStr=today.getDate()+' '+months[today.getMonth()]+' '+today.getFullYear();
+
+  // ══ FON: Qızılı-krem klassik rəng ══
+  const bgG=ctx.createLinearGradient(0,0,W,H);
+  bgG.addColorStop(0,'#fdf6e3');
+  bgG.addColorStop(0.5,'#fff8ec');
+  bgG.addColorStop(1,'#fdf0d5');
+  ctx.fillStyle=bgG; ctx.fillRect(0,0,W,H);
+
+  // ══ ARXA FON NAXIŞ — incə dalğalı ══
+  ctx.save(); ctx.globalAlpha=0.04;
+  for(let i=0;i<W;i+=18){
+    ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,H);
+    ctx.strokeStyle='#8B6914'; ctx.lineWidth=0.5; ctx.stroke();
+  }
+  for(let j=0;j<H;j+=18){
+    ctx.beginPath(); ctx.moveTo(0,j); ctx.lineTo(W,j);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  // ══ DALĞALI FON PANELİ — üst ══
+  ctx.save();
+  const topG=ctx.createLinearGradient(0,0,W,0);
+  topG.addColorStop(0,'#1a3a6e');
+  topG.addColorStop(0.5,'#0f2a5e');
+  topG.addColorStop(1,'#1a3a6e');
+  ctx.fillStyle=topG;
+  ctx.beginPath();
+  ctx.moveTo(0,0); ctx.lineTo(W,0); ctx.lineTo(W,90);
+  ctx.bezierCurveTo(W*0.75,110,W*0.25,70,0,90);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+
+  // ══ AŞAĞI PANEL ══
+  ctx.save();
+  const botG=ctx.createLinearGradient(0,H-80,0,H);
+  botG.addColorStop(0,'#1a3a6e'); botG.addColorStop(1,'#0f2a5e');
+  ctx.fillStyle=botG;
+  ctx.beginPath();
+  ctx.moveTo(0,H); ctx.lineTo(W,H); ctx.lineTo(W,H-70);
+  ctx.bezierCurveTo(W*0.75,H-90,W*0.25,H-50,0,H-70);
+  ctx.closePath(); ctx.fill();
+  ctx.restore();
+
+  // ══ XARİCİ ÇƏRÇIVƏ ══
+  // Qızılı xarici kənar
+  const borderG=ctx.createLinearGradient(0,0,W,H);
+  borderG.addColorStop(0,'#c9993a');
+  borderG.addColorStop(0.25,'#f0c060');
+  borderG.addColorStop(0.5,'#c9993a');
+  borderG.addColorStop(0.75,'#f0c060');
+  borderG.addColorStop(1,'#c9993a');
+  ctx.strokeStyle=borderG; ctx.lineWidth=5;
+  roundRect(ctx,8,8,W-16,H-16,4); ctx.stroke();
+
+  // İkinci çərçivə
+  ctx.strokeStyle='rgba(201,153,58,0.5)'; ctx.lineWidth=1.5;
+  roundRect(ctx,16,16,W-32,H-32,3); ctx.stroke();
+
+  // ══ KÖŞƏLƏRİ ÖRNƏKLƏRİ ══
+  function drawCorner(x,y,sx,sy){
+    ctx.save(); ctx.translate(x,y); ctx.scale(sx,sy);
+    const cG=ctx.createLinearGradient(0,0,50,50);
+    cG.addColorStop(0,'#f0c060'); cG.addColorStop(1,'#c9993a');
+    ctx.strokeStyle=cG; ctx.lineWidth=2;
+    // Xaç ornament
+    ctx.beginPath(); ctx.moveTo(8,0); ctx.lineTo(8,48); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,8); ctx.lineTo(48,8); ctx.stroke();
+    // Künc kvadrat
+    ctx.strokeStyle='rgba(201,153,58,0.6)'; ctx.lineWidth=1;
+    ctx.strokeRect(3,3,16,16);
+    // Dörd nöqtə
+    [[3,3],[19,3],[3,19],[19,19]].forEach(([px,py])=>{
+      ctx.beginPath(); ctx.arc(px,py,2.5,0,Math.PI*2);
+      ctx.fillStyle='#f0c060'; ctx.fill();
+    });
+    ctx.restore();
+  }
+  drawCorner(14,14,1,1); drawCorner(W-14,14,-1,1);
+  drawCorner(14,H-14,1,-1); drawCorner(W-14,H-14,-1,-1);
+
+  // ══ ÜST PANEL MƏTNİ ══
+  // NilAr loqo — üst mərkəz
+  ctx.textAlign='center';
+  ctx.font='bold 13px Outfit, sans-serif';
+  ctx.fillStyle='rgba(255,255,255,0.5)';
+  ctx.letterSpacing='4px';
+  ctx.fillText('✦  N I L A R  E D U  C E N T E R  ✦', W/2, 38);
+
+  ctx.font='bold 20px Georgia, serif';
+  const nlG=ctx.createLinearGradient(W/2-80,0,W/2+80,0);
+  nlG.addColorStop(0,'#f0c060'); nlG.addColorStop(0.5,'#fff8e0'); nlG.addColorStop(1,'#f0c060');
+  ctx.fillStyle=nlG;
+  ctx.fillText('Bilik Yarışması Sertifikatı', W/2, 68);
+
+  // ══ SOL VƏ SAĞ ORNAMENTLƏR ══
+  function floral(x,y,flip=false){
+    ctx.save(); ctx.translate(x,y); if(flip) ctx.scale(-1,1);
+    ctx.strokeStyle='rgba(201,153,58,0.35)'; ctx.lineWidth=1;
+    // Gövdə
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.bezierCurveTo(20,-30,40,-20,50,-40); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.bezierCurveTo(-15,-25,10,-40,20,-55); ctx.stroke();
+    // Yarpaq nöqtələri
+    [[50,-40],[20,-55],[0,-65]].forEach(([px,py])=>{
+      ctx.beginPath(); ctx.arc(px,py,4,0,Math.PI*2);
+      ctx.fillStyle='rgba(201,153,58,0.4)'; ctx.fill();
+    });
+    ctx.restore();
+  }
+  floral(55,280); floral(W-55,280,true);
+
+  // ══ ƏSAS BAŞLIQ ══
+  ctx.shadowColor='rgba(201,153,58,0.3)'; ctx.shadowBlur=15; ctx.shadowOffsetY=4;
+  ctx.font='bold 56px Georgia, serif';
+  const titG=ctx.createLinearGradient(W/2-180,0,W/2+180,0);
+  titG.addColorStop(0,'#c9993a');
+  titG.addColorStop(0.3,'#f0c060');
+  titG.addColorStop(0.5,'#fff8e0');
+  titG.addColorStop(0.7,'#f0c060');
+  titG.addColorStop(1,'#c9993a');
+  ctx.fillStyle=titG;
+  ctx.fillText('SERTIFIKAT', W/2, 178);
+  ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+
+  // Başlıq altı ornament xətt
+  function ornLine(y){
+    const lg=ctx.createLinearGradient(80,0,W-80,0);
+    lg.addColorStop(0,'transparent'); lg.addColorStop(0.15,'#c9993a');
+    lg.addColorStop(0.5,'#f0c060'); lg.addColorStop(0.85,'#c9993a'); lg.addColorStop(1,'transparent');
+    ctx.strokeStyle=lg; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(80,y); ctx.lineTo(W-80,y); ctx.stroke();
+  }
+  ornLine(192); ornLine(196);
+
+  // Mərkəz ornament ulduz
+  ctx.font='14px serif'; ctx.fillStyle='#c9993a'; ctx.textAlign='center';
+  ctx.fillText('✦ ✦ ✦', W/2, 215);
+
+  // ══ VERİLİR MƏTNİ ══
+  ctx.font='italic 15px Georgia, serif';
+  ctx.fillStyle='#7a6020';
+  ctx.fillText('Bu sertifikat hörmətlə aşağıdakı şəxsə təqdim olunur', W/2, 242);
+
+  // ══ AD ══
+  // Ad fonу — qızılı haşiyəli
+  ctx.save();
+  ctx.shadowColor='rgba(201,153,58,0.25)'; ctx.shadowBlur=12;
+  const nmW=Math.max(ctx.measureText(name).width+120, 300);
+  const nmX=W/2-nmW/2;
+  // Fon
+  const nmBg=ctx.createLinearGradient(nmX,0,nmX+nmW,0);
+  nmBg.addColorStop(0,'rgba(201,153,58,0.08)');
+  nmBg.addColorStop(0.5,'rgba(240,192,96,0.14)');
+  nmBg.addColorStop(1,'rgba(201,153,58,0.08)');
+  ctx.fillStyle=nmBg;
+  roundRect(ctx,nmX,255,nmW,52,26); ctx.fill();
+  // Haşiyə
+  const nmBd=ctx.createLinearGradient(nmX,0,nmX+nmW,0);
+  nmBd.addColorStop(0,'#c9993a'); nmBd.addColorStop(0.5,'#f0c060'); nmBd.addColorStop(1,'#c9993a');
+  ctx.strokeStyle=nmBd; ctx.lineWidth=1.5;
+  roundRect(ctx,nmX,255,nmW,52,26); ctx.stroke();
+  ctx.restore();
+
+  ctx.font='bold 34px Georgia, serif';
+  ctx.shadowColor='rgba(100,70,0,0.15)'; ctx.shadowBlur=6;
+  const nameG2=ctx.createLinearGradient(W/2-120,0,W/2+120,0);
+  nameG2.addColorStop(0,'#5a3800'); nameG2.addColorStop(0.4,'#3d2200');
+  nameG2.addColorStop(0.6,'#5a3800'); nameG2.addColorStop(1,'#3d2200');
+  ctx.fillStyle=nameG2;
+  ctx.fillText(name, W/2, 291);
+  ctx.shadowBlur=0;
+
+  // ══ FƏNN / SİNİF ══
+  ctx.font='13px Outfit, sans-serif';
+  ctx.fillStyle='#8a6820';
+  ctx.fillText(`${sinif}-ci sinif  ✦  ${fc?.n||''}  ✦  Bilik Yarışması`, W/2, 330);
+
+  // ══ NƏTİCƏ BLOKU ══
+  // Üç sütunlu xülasə paneli
+  const panels=[
+    {label:'Düzgün Cavab', val:`${cor}/${qs.length}`, color:'#1a7a40'},
+    {label:'Nəticə',       val:`${pct}%`,              color:'#1a3a6e'},
+    {label:'Qazanılan Xal',val:`${xal} xal`,           color:'#8a5c00'},
+  ];
+  panels.forEach((p,i)=>{
+    const pw=180, ph=72, px=W/2-270+i*195, py=352;
+    // Panel fon
+    const pBg=ctx.createLinearGradient(px,py,px,py+ph);
+    if(i===1){
+      // Orta panel — vurğulu
+      pBg.addColorStop(0,'#1a3a6e'); pBg.addColorStop(1,'#0f2054');
+      ctx.fillStyle=pBg; roundRect(ctx,px-5,py-5,pw+10,ph+10,10); ctx.fill();
+      ctx.strokeStyle='#f0c060'; ctx.lineWidth=2;
+      roundRect(ctx,px-5,py-5,pw+10,ph+10,10); ctx.stroke();
+    } else {
+      pBg.addColorStop(0,'rgba(255,248,230,0.9)'); pBg.addColorStop(1,'rgba(253,240,213,0.9)');
+      ctx.fillStyle=pBg; roundRect(ctx,px,py,pw,ph,8); ctx.fill();
+      ctx.strokeStyle='rgba(201,153,58,0.4)'; ctx.lineWidth=1;
+      roundRect(ctx,px,py,pw,ph,8); ctx.stroke();
+    }
+    // Dəyər
+    ctx.font=`bold ${i===1?28:24}px Georgia, serif`;
+    ctx.fillStyle=i===1?'#f0c060':p.color;
+    ctx.fillText(p.val, px+(i===1?pw/2+5:pw/2), py+(i===1?38:36));
+    // Label
+    ctx.font=`${i===1?11:10}px Outfit, sans-serif`;
+    ctx.fillStyle=i===1?'rgba(255,255,255,0.6)':'#9a7830';
+    ctx.fillText(p.label, px+(i===1?pw/2+5:pw/2), py+(i===1?58:54));
+  });
+
+  // ══ AYIRICI ══
+  ornLine(448);
+
+  // ══ ALT MƏLUMAT ══
+  ctx.font='11px Outfit, sans-serif';
+  ctx.fillStyle='rgba(255,255,255,0.7)';
+  ctx.textAlign='left';
+  ctx.fillText('📅  '+dateStr, 50, H-36);
+  ctx.fillText('🏫  NilAr Edu Center — Bakı, Azərbaycan', 50, H-18);
+  ctx.textAlign='right';
+  ctx.fillText('nilar.edu.az', W-50, H-36);
+  ctx.fillText('Rəsmi Sertifikat  ✦  ID: NE-'+today.getFullYear()+'-'+String(cor*xal+sinif*100).padStart(4,'0'), W-50, H-18);
+
+  // ══ RƏSMİ MÖHÜR ══
+  const sx=W/2, sy=452;
+  // Xarici dairə
+  ctx.beginPath(); ctx.arc(sx,sy,36,0,Math.PI*2);
+  const sealBg=ctx.createRadialGradient(sx,sy,4,sx,sy,36);
+  sealBg.addColorStop(0,'rgba(240,192,96,0.2)');
+  sealBg.addColorStop(1,'rgba(201,153,58,0.08)');
+  ctx.fillStyle=sealBg; ctx.fill();
+  ctx.strokeStyle='#c9993a'; ctx.lineWidth=2; ctx.stroke();
+  // İçəri dairə
+  ctx.beginPath(); ctx.arc(sx,sy,27,0,Math.PI*2);
+  ctx.strokeStyle='rgba(201,153,58,0.5)'; ctx.lineWidth=1; ctx.stroke();
+  // Dişli kənar
+  for(let a=0;a<Math.PI*2;a+=Math.PI/8){
+    ctx.beginPath();
+    ctx.moveTo(sx+Math.cos(a)*33,sy+Math.sin(a)*33);
+    ctx.lineTo(sx+Math.cos(a)*37,sy+Math.sin(a)*37);
+    ctx.strokeStyle='#c9993a'; ctx.lineWidth=1.5; ctx.stroke();
+  }
+  // Mərkəz simvol
+  ctx.textAlign='center';
+  ctx.font='20px serif'; ctx.fillStyle='#c9993a';
+  ctx.fillText('✦', sx, sy+7);
+  // Möhür mətni — dairəvi
+  ctx.save(); ctx.translate(sx,sy);
+  ctx.font='bold 7.5px Outfit, sans-serif'; ctx.fillStyle='rgba(201,153,58,0.7)';
+  const sealTxt='NilAr Edu Center • Rəsmi • ';
+  for(let i=0;i<sealTxt.length;i++){
+    const ang=-Math.PI/2+(i/sealTxt.length)*Math.PI*2;
+    ctx.save(); ctx.rotate(ang); ctx.translate(0,-23);
+    ctx.fillText(sealTxt[i],0,0); ctx.restore();
+  }
+  ctx.restore();
+
+  // ══ QIZIL ULDUZLAR ══
+  function goldStar(cx,cy,r){
+    ctx.save(); ctx.translate(cx,cy);
+    const pts=5; const inner=r*0.42;
+    ctx.beginPath();
+    for(let i=0;i<pts*2;i++){
+      const ang=(i*Math.PI/pts)-Math.PI/2;
+      const rr=i%2===0?r:inner;
+      i===0?ctx.moveTo(Math.cos(ang)*rr,Math.sin(ang)*rr):
+            ctx.lineTo(Math.cos(ang)*rr,Math.sin(ang)*rr);
+    }
+    ctx.closePath();
+    const sg=ctx.createRadialGradient(0,0,1,0,0,r);
+    sg.addColorStop(0,'#fff8e0'); sg.addColorStop(0.5,'#f0c060'); sg.addColorStop(1,'#c9993a');
+    ctx.fillStyle=sg;
+    ctx.shadowColor='rgba(201,153,58,0.5)'; ctx.shadowBlur=6;
+    ctx.fill(); ctx.restore();
+  }
+  // Möhürün yanlarında ulduzlar
+  goldStar(sx-80,sy,11); goldStar(sx+80,sy,11);
+  goldStar(sx-130,sy,7); goldStar(sx+130,sy,7);
+  // Yuxarı kiçik ulduzlar
+  [[120,105],[W-120,105],[200,88],[W-200,88]].forEach(([x,y])=>goldStar(x,y,8));
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+function downloadCert(){
+  const cvs=document.getElementById('certCanvas');
+  const a=document.createElement('a');
+  a.download=`NilAr_Sertifikat_${name.replace(/ /g,'_')}.png`;
+  a.href=cvs.toDataURL('image/png');
+  a.click();
+}
+
+// ════ SƏS SİSTEMİ ════
+let audioCtx=null;
+let soundOn=true;
+
+function getCtx(){
+  if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state==='suspended') audioCtx.resume();
+  return audioCtx;
+}
+
+function playTone(freq,type,duration,vol=0.3,delay=0){
+  if(!soundOn) return;
+  try{
+    const ctx=getCtx();
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.type=type;
+    osc.frequency.setValueAtTime(freq,ctx.currentTime+delay);
+    gain.gain.setValueAtTime(0,ctx.currentTime+delay);
+    gain.gain.linearRampToValueAtTime(vol,ctx.currentTime+delay+0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+delay+duration);
+    osc.start(ctx.currentTime+delay);
+    osc.stop(ctx.currentTime+delay+duration);
+  }catch(e){}
+}
+
+function playNoise(duration,vol=0.08){
+  if(!soundOn) return;
+  try{
+    const ctx=getCtx();
+    const bufSize=ctx.sampleRate*duration;
+    const buf=ctx.createBuffer(1,bufSize,ctx.sampleRate);
+    const data=buf.getChannelData(0);
+    for(let i=0;i<bufSize;i++) data[i]=(Math.random()*2-1);
+    const src=ctx.createBufferSource();
+    src.buffer=buf;
+    const gain=ctx.createGain();
+    gain.gain.setValueAtTime(vol,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+duration);
+    src.connect(gain); gain.connect(ctx.destination);
+    src.start(); src.stop(ctx.currentTime+duration);
+  }catch(e){}
+}
+
+const SND={
+  // Düymə klik
+  click(){
+    playTone(600,'sine',0.06,0.15);
+  },
+  // Sual başladı
+  newQ(){
+    playTone(440,'sine',0.08,0.12);
+    playTone(550,'sine',0.08,0.12,0.08);
+  },
+  // Düzgün cavab — şən melodiya
+  correct(){
+    playTone(523,'sine',0.12,0.25);
+    playTone(659,'sine',0.12,0.25,0.12);
+    playTone(784,'sine',0.18,0.25,0.24);
+    playTone(1047,'sine',0.22,0.22,0.38);
+  },
+  // Yanlış cavab — xəfif dalğa
+  wrong(){
+    playTone(300,'sawtooth',0.08,0.18);
+    playTone(220,'sawtooth',0.12,0.18,0.10);
+    playTone(180,'sine',0.15,0.15,0.22);
+  },
+  // Vaxt bitdi — alarm
+  timeUp(){
+    playTone(440,'square',0.08,0.2);
+    playTone(330,'square',0.08,0.2,0.10);
+    playTone(220,'square',0.12,0.2,0.20);
+  },
+  // Taymer xəbərdarlığı (son 5 saniyə hər tick)
+  tick(){
+    playTone(880,'square',0.04,0.1);
+  },
+  // Oyun başladı
+  start(){
+    [261,329,392,523].forEach((f,i)=>playTone(f,'sine',0.15,0.2,i*0.1));
+  },
+  // Nəticə — böyük fanarfa
+  fanfare(){
+    const notes=[523,659,784,1047,784,1047,1319];
+    notes.forEach((f,i)=>playTone(f,'sine',0.18,0.25,i*0.12));
+  },
+  // Sertifikat
+  cert(){
+    [523,659,784,1047,1319,1047,1319,1568].forEach((f,i)=>playTone(f,'sine',0.14,0.22,i*0.1));
+  },
+  // Sonunda pis nəticə
+  fail(){
+    playTone(330,'sawtooth',0.2,0.2);
+    playTone(277,'sawtooth',0.2,0.2,0.22);
+    playTone(220,'sawtooth',0.3,0.18,0.46);
+  },
+};
+
+function toggleSound(){
+  soundOn=!soundOn;
+  const btn=document.getElementById('sndBtn');
+  btn.textContent=soundOn?'🔊':'🔇';
+  btn.title=soundOn?'Səsi söndür':'Səsi aç';
+  if(soundOn){ SND.click(); resumeMusic(); }
+  else stopMusic();
+}
+
+// ════ MUSİQİ SİSTEMİ ════
+let musicNodes=[];
+let musicPlaying=false;
+let currentTrack='';
+
+function stopMusic(){
+  musicNodes.forEach(n=>{try{n.stop();}catch(e){}});
+  musicNodes=[];
+  musicPlaying=false;
+}
+
+function playMusic(track){
+  if(!soundOn) return;
+  if(currentTrack===track && musicPlaying) return;
+  stopMusic();
+  currentTrack=track;
+  musicPlaying=true;
+  if(track==='home') loopHome();
+  else if(track==='quiz') loopQuiz();
+  else if(track==='result') loopResult();
+}
+
+function resumeMusic(){
+  if(currentTrack) playMusic(currentTrack);
+}
+
+// ════════════════════════════════════════════════════
+//  VƏTƏNPƏRVƏRLİK MUSİQİLƏRİ
+//  Azərbaycan milli musiqi motivləri — orijinal əsərlər
+//  Tar, balaban, zurna, qaval tembr imitasiyası
+// ════════════════════════════════════════════════════
+
+// Azərbaycan muğam intervalları: segah, rast, şur
+// Şur: D E F G A Bb C D  (milli ton)
+// Rast: C D E F G A Bb C
+// Tar vibrato efekti üçün xüsusi funksiya
+
+function mTar(ctx,freq,start,dur,vol=0.1){
+  // Tar tembri: əsas ton + yüksək harmoniklər + vibrato
+  if(!freq||!soundOn) return;
+  try{
+    const osc=ctx.createOscillator();
+    const osc2=ctx.createOscillator(); // harmonik
+    const osc3=ctx.createOscillator(); // vibrato mənbəyi
+    const gain=ctx.createGain();
+    const gain2=ctx.createGain();
+    const vibGain=ctx.createGain();
+    const masterGain=ctx.createGain();
+
+    // Vibrato: 5Hz, dərin Azərbaycan teli vibrasiyası
+    osc3.frequency.value=5.5;
+    osc3.type='sine';
+    vibGain.gain.value=freq*0.022; // vibrato dərinliyi
+    osc3.connect(vibGain);
+    vibGain.connect(osc.frequency);
+    vibGain.connect(osc2.frequency);
+
+    osc.type='sawtooth'; osc.frequency.value=freq;
+    osc2.type='triangle'; osc2.frequency.value=freq*2.01;
+
+    gain.gain.value=0.7; gain2.gain.value=0.3;
+    osc.connect(gain); osc2.connect(gain2);
+    gain.connect(masterGain); gain2.connect(masterGain);
+
+    // Reverb delay — muğam zalı əks-sədası
+    const delay=ctx.createDelay(0.5); delay.delayTime.value=0.22;
+    const dg=ctx.createGain(); dg.gain.value=0.15;
+    masterGain.connect(delay); delay.connect(dg); dg.connect(ctx.destination);
+    masterGain.connect(ctx.destination);
+
+    masterGain.gain.setValueAtTime(0,ctx.currentTime+start);
+    masterGain.gain.linearRampToValueAtTime(vol,ctx.currentTime+start+0.025);
+    masterGain.gain.setValueAtTime(vol,ctx.currentTime+start+dur*0.7);
+    masterGain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+start+dur);
+
+    [osc,osc2,osc3].forEach(o=>{o.start(ctx.currentTime+start);o.stop(ctx.currentTime+start+dur+0.05);});
+    musicNodes.push(osc,osc2,osc3);
+  }catch(e){}
+}
+
+function mBalaban(ctx,freq,start,dur,vol=0.09){
+  // Balaban tembri: incə, lirik, nəfəs aləti
+  if(!freq||!soundOn) return;
+  try{
+    const osc=ctx.createOscillator();
+    const osc2=ctx.createOscillator();
+    const gain=ctx.createGain();
+    const filter=ctx.createBiquadFilter();
+    filter.type='bandpass'; filter.frequency.value=freq*1.5; filter.Q.value=2;
+    osc.type='sine'; osc.frequency.value=freq;
+    osc2.type='sine'; osc2.frequency.value=freq*1.5;
+    const g2=ctx.createGain(); g2.gain.value=0.25;
+    osc.connect(gain); osc2.connect(g2); g2.connect(filter);
+    gain.connect(ctx.destination); filter.connect(ctx.destination);
+    gain.gain.setValueAtTime(0,ctx.currentTime+start);
+    gain.gain.linearRampToValueAtTime(vol,ctx.currentTime+start+0.04);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+start+dur);
+    osc.start(ctx.currentTime+start); osc.stop(ctx.currentTime+start+dur+0.05);
+    osc2.start(ctx.currentTime+start); osc2.stop(ctx.currentTime+start+dur+0.05);
+    musicNodes.push(osc,osc2);
+  }catch(e){}
+}
+
+function mQaval(ctx,start,hard=false){
+  // Qaval zərb ritmi
+  if(!soundOn) return;
+  try{
+    const nc=getCtx();
+    const dur=hard?0.08:0.06;
+    const buf=nc.createBuffer(1,nc.sampleRate*dur,nc.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<d.length;i++){
+      const t=i/nc.sampleRate;
+      d[i]=(Math.random()*2-1)*Math.exp(-i/(hard?300:500))*
+            (hard?1.0:0.6);
+    }
+    const s=nc.createBufferSource(); s.buffer=buf;
+    const g=nc.createGain(); g.gain.value=hard?0.12:0.07;
+    // Aşağı qabarcıq filtri — qaval tonu
+    const f=nc.createBiquadFilter(); f.type='lowpass'; f.frequency.value=hard?800:400;
+    s.connect(f); f.connect(g); g.connect(nc.destination);
+    s.start(nc.currentTime+start);
+    musicNodes.push(s);
+  }catch(e){}
+}
+
+// ────────────────────────────────────────────
+// 🏠 ƏSAS SƏHİFƏ: "AZƏRBAYCAN" — Şur muğamı üzərində vətənpərvər melodiya
+// Şur: D Eb F G Ab Bb C D — kədər + iftixar
+// ────────────────────────────────────────────
+function loopHome(){
+  if(!soundOn||currentTrack!=='home') return;
+  try{
+    const ctx=getCtx();
+    const BPM=76, B=60/BPM;
+
+    // Şur muğamı üzərində "Azərbaycan" motivli orijinal melodiya
+    // Nota: D  Eb  F  G  Ab  G  F  Eb | D  F  Ab  C'  Bb  Ab  G  F
+    //       D  Eb  F  Ab  G  F  Eb  D | D  D  C'  Bb  Ab  G  F  D
+    const sHUR=[
+      293.7, 311.1, 349.2, 392,   415.3, 392,   349.2, 311.1,
+      293.7, 349.2, 415.3, 523.3, 466.2, 415.3, 392,   349.2,
+      293.7, 311.1, 349.2, 415.3, 392,   349.2, 311.1, 293.7,
+      293.7, 293.7, 523.3, 466.2, 415.3, 392,   349.2, 293.7
+    ];
+    // Tar ilə ifa — əsas melodiya
+    sHUR.forEach((f,i)=>{
+      mTar(ctx,f,i*B*0.75,B*0.68,0.11);
+    });
+
+    // Balaban — 2-ci səs, bir oktava aşağı
+    const sHUR2=[293.7,0,349.2,0,415.3,0,392,0, 293.7,0,415.3,0,466.2,0,392,0,
+                 293.7,0,311.1,0,392,0,349.2,0, 293.7,0,523.3,0,415.3,0,293.7,0];
+    sHUR2.forEach((f,i)=>{
+      if(f) mBalaban(ctx,f/2,i*B*0.75+B*0.1,B*0.6,0.06);
+    });
+
+    // Qaval ritmi — Azərbaycan folklor ritmi "5+3" (dübeyt)
+    // ●●● ●● | ●●● ●●
+    const qavalPat=[0,B*0.5,B,B*1.75,B*2.25, B*3,B*3.5,B*4,B*4.75,B*5.25,
+                    B*6,B*6.5,B*7,B*7.75,B*8.25, B*9,B*9.5,B*10,B*10.75,B*11.25];
+    qavalPat.forEach((t,i)=>mQaval(ctx,t,i%5===0));
+
+    // Bas kök sesi — dərin milli ton
+    [293.7,293.7,349.2,293.7, 293.7,293.7,415.3,293.7].forEach((f,i)=>{
+      mNote(ctx,f/2,i*B*3,B*2.8,0.07,'triangle',0.08,0.5);
+    });
+
+    const totalDur=sHUR.length*B*0.75*1000+600;
+    setTimeout(()=>{ if(soundOn&&currentTrack==='home') loopHome(); },totalDur);
+  }catch(e){}
+}
+
+// ────────────────────────────────────────────
+// 🧠 QUIZ: "QƏHRƏMAN" — Rast muğamı üzərində döyüş ruhu
+// Rast: C D E F G A Bb C — ümid + gücü
+// ────────────────────────────────────────────
+function loopQuiz(){
+  if(!soundOn||currentTrack!=='quiz') return;
+  try{
+    const ctx=getCtx();
+    const BPM=112, B=60/BPM;
+
+    // Rast muğamı + zurna tembri (square dalğa) — döyüş marşı motivli
+    // C  E  G  A  G  E  C  D | E  G  A  Bb  A  G  E  C
+    // C  D  E  G  A  G  E  D | C  C  E  G   C' Bb A  G
+    const rAST=[
+      261.6,329.6,392,440,  392,329.6,261.6,293.7,
+      329.6,392,440,466.2,  440,392,329.6,261.6,
+      261.6,293.7,329.6,392, 440,392,329.6,293.7,
+      261.6,261.6,329.6,392, 523.3,466.2,440,392
+    ];
+    rAST.forEach((f,i)=>{
+      // Zurna imitasiyası: square + bright
+      mTar(ctx,f,i*B*0.5,B*0.44,0.10);
+    });
+
+    // Döyüş qaval ritmi — cəld, güclü
+    // ●  ●● ●  ● | ●  ●● ●  ●
+    const qPat2=[0,B*0.5,B*0.75,B*1.25,B*1.5, B*2,B*2.5,B*2.75,B*3.25,B*3.5,
+                 B*4,B*4.5,B*4.75,B*5.25,B*5.5, B*6,B*6.5,B*6.75,B*7.25,B*7.5];
+    qPat2.forEach((t,i)=>mQaval(ctx,t,i%5===0||i%5===1));
+
+    // Harmoniya — ikinci tar
+    const harm3=[523.3,0,659.3,0,784,0,880,0, 523.3,0,784,0,932.3,0,784,0,
+                 523.3,0,587.3,0,659.3,0,784,0, 523.3,0,659.3,0,1046.5,0,932.3,0];
+    harm3.forEach((f,i)=>{
+      if(f) mNote(ctx,f,i*B*0.5,B*0.4,0.04,'sine',0.02,0.1);
+    });
+
+    // Güclü bas
+    [130.8,0,164.8,0,196,0,130.8,0].forEach((f,i)=>{
+      if(f) mNote(ctx,f,i*B*2,B*1.8,0.09,'triangle',0.05,0.3);
+    });
+
+    const totalDur=rAST.length*B*0.5*1000+400;
+    setTimeout(()=>{ if(soundOn&&currentTrack==='quiz') loopQuiz(); },totalDur);
+  }catch(e){}
+}
+
+// ────────────────────────────────────────────
+// 🏆 NƏTİCƏ: "ZƏFƏR" — Bayatı-Şiraz üzərində qələbə himni
+// Bayatı-Şiraz: D E F G Ab Bb C D — böyüklük + iftixar
+// ────────────────────────────────────────────
+function loopResult(){
+  if(!soundOn||currentTrack!=='result') return;
+  try{
+    const ctx=getCtx();
+    const BPM=92, B=60/BPM;
+
+    // Bayatı-Şiraz: qələbə, iftixar, sevinc motivli orijinal melodiya
+    // D  F  Ab  C'  Bb  Ab  G  F | D  F  Ab  Bb  C'  Bb  Ab  D'
+    // Ab G  F   D   Eb  F   G  Ab | D  Eb F   Ab  G   F   Eb  D
+    const bSHIRAZ=[
+      293.7,349.2,415.3,523.3, 466.2,415.3,392,349.2,
+      293.7,349.2,415.3,466.2, 523.3,466.2,415.3,587.3,
+      415.3,392,349.2,293.7,   311.1,349.2,392,415.3,
+      293.7,311.1,349.2,415.3, 392,349.2,311.1,293.7
+    ];
+    bSHIRAZ.forEach((f,i)=>{
+      mTar(ctx,f,i*B*0.6,B*0.54,0.13);
+    });
+
+    // Balaban — lirik ikinci melodiya
+    const bal2=[293.7,0,415.3,0,523.3,0,466.2,0,
+                293.7,0,415.3,0,523.3,0,587.3,0,
+                415.3,0,349.2,0,311.1,0,392,0,
+                293.7,0,349.2,0,392,0,293.7,0];
+    bal2.forEach((f,i)=>{
+      if(f) mBalaban(ctx,f,i*B*0.6+B*0.15,B*0.5,0.07);
+    });
+
+    // Şənlik qaval — sevinc ritmi
+    const qPat3=[0,B*0.3,B*0.6,B*1.0,B*1.3, B*1.8,B*2.1,B*2.4,B*2.8,B*3.1,
+                 B*3.6,B*3.9,B*4.2,B*4.6,B*4.9, B*5.4,B*5.7,B*6.0,B*6.4,B*6.7];
+    qPat3.forEach((t,i)=>mQaval(ctx,t,i%3===0));
+
+    // Iftixar bas — dərin, vüqarlı
+    [146.8,146.8,174.6,146.8, 146.8,146.8,196,146.8].forEach((f,i)=>{
+      mNote(ctx,f,i*B*2.4,B*2.1,0.09,'triangle',0.06,0.5);
+    });
+
+    // Yüksək harmoniya — şənlik
+    [587.3,0,784,0,932.3,0,1046.5,0, 587.3,0,784,0,1046.5,0,1174.7,0].forEach((f,i)=>{
+      if(f) mNote(ctx,f,i*B*0.6,B*0.5,0.04,'sine',0.03,0.15);
+    });
+
+    const totalDur=bSHIRAZ.length*B*0.6*1000+500;
+    setTimeout(()=>{ if(soundOn&&currentTrack==='result') loopResult(); },totalDur);
+  }catch(e){}
+}
+
+
+
+// ════ CONFETTI ════
+const CLRS=['#c9993a','#f0c060','#0a7a6e','#5a4ab0','#e05050','#3a8fe0'];
+function spawnCnf(n=12){
+  for(let i=0;i<n;i++){
+    const el=document.createElement('div');
+    el.className='cnf';
+    const sz=6+Math.random()*9;
+    el.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*25}vh;background:${CLRS[Math.floor(Math.random()*CLRS.length)]};width:${sz}px;height:${sz}px;border-radius:${Math.random()>.5?'50%':'3px'};animation-duration:${2.2+Math.random()*2}s;animation-delay:${Math.random()*.5}s;`;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),5000);
+  }
+}
+
+// ════ SCREENS ════
+function showScr(id){
+  clearInterval(tInt);
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='s-home') playMusic('home');
+  else if(id==='s-quiz') playMusic('quiz');
+  else if(id==='s-result') playMusic('result');
+}
+
+<!-- ══ ADMİN PANELİ ══ -->
+<div class="modal-ov" id="adminModal" style="z-index:1100;">
+  <div style="background:#fff;border-radius:20px;width:100%;max-width:860px;max-height:88vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,0.4);">
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#0f1f3d,#1a3a6e);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="color:#fff;font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;font-weight:700;">⚙ Admin Panel</div>
+        <div style="color:rgba(255,255,255,0.4);font-size:0.75rem;margin-top:2px;">NilAr Edu Center — İştirakçı İdarəetməsi</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <input type="password" id="adminPassInp" placeholder="Şifrə daxil edin" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:8px 14px;color:#fff;font-size:0.82rem;outline:none;width:180px;" onkeydown="if(event.key==='Enter')checkAdminPass()">
+        <button onclick="checkAdminPass()" style="background:linear-gradient(135deg,#c9993a,#f0c060);border:none;border-radius:8px;padding:8px 18px;color:#0f1f3d;font-weight:700;font-size:0.82rem;cursor:pointer;">Daxil ol</button>
+        <button onclick="closeAdmin()" style="background:rgba(255,255,255,0.1);border:none;width:34px;height:34px;border-radius:8px;color:#fff;font-size:16px;cursor:pointer;">✕</button>
+      </div>
+    </div>
+
+    <!-- Locked screen -->
+    <div id="adminLocked" style="flex:1;display:flex;align-items:center;justify-content:center;padding:60px;text-align:center;background:#f4f6fb;">
+      <div>
+        <div style="font-size:56px;margin-bottom:16px;">🔐</div>
+        <div style="font-size:1.1rem;font-weight:700;color:#0f1f3d;margin-bottom:8px;">Admin panelinə daxil olmaq üçün şifrə lazımdır</div>
+        <div style="color:#6b7c93;font-size:0.85rem;">Yuxarıda şifrəni daxil edib "Daxil ol" düyməsinə basın</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div id="adminContent" style="display:none;flex:1;overflow-y:auto;padding:24px 28px;background:#f4f6fb;">
+      <!-- Stats cards -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;" id="statsCards">
+        <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid rgba(15,31,61,0.08);text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#0f1f3d;" id="stTotal">—</div>
+          <div style="font-size:0.75rem;color:#6b7c93;margin-top:4px;font-weight:600;">Cəmi İştirakçı</div>
+        </div>
+        <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid rgba(15,31,61,0.08);text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#1a7a40;" id="stCert">—</div>
+          <div style="font-size:0.75rem;color:#6b7c93;margin-top:4px;font-weight:600;">Sertifikat Alanlar</div>
+        </div>
+        <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid rgba(15,31,61,0.08);text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#c9993a;" id="stAvg">—</div>
+          <div style="font-size:0.75rem;color:#6b7c93;margin-top:4px;font-weight:600;">Orta Nəticə</div>
+        </div>
+        <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid rgba(15,31,61,0.08);text-align:center;">
+          <div style="font-size:2rem;font-weight:800;color:#5a4ab0;" id="stToday">—</div>
+          <div style="font-size:0.75rem;color:#6b7c93;margin-top:4px;font-weight:600;">Bu gün</div>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center;">
+        <input type="text" id="adminSearch" placeholder="Ad ilə axtar..." oninput="renderAdminTable()" style="padding:9px 14px;border:1.5px solid rgba(15,31,61,0.1);border-radius:9px;font-size:0.83rem;outline:none;min-width:200px;">
+        <select id="adminFennFilter" onchange="renderAdminTable()" style="padding:9px 14px;border:1.5px solid rgba(15,31,61,0.1);border-radius:9px;font-size:0.83rem;outline:none;background:#fff;">
+          <option value="">Bütün fənlər</option>
+          <option>Azərbaycan Dili</option><option>Riyaziyyat</option>
+          <option>Həyat Bilgisi</option><option>Təbiət</option>
+        </select>
+        <select id="adminSinifFilter" onchange="renderAdminTable()" style="padding:9px 14px;border:1.5px solid rgba(15,31,61,0.1);border-radius:9px;font-size:0.83rem;outline:none;background:#fff;">
+          <option value="">Bütün siniflər</option>
+          <option value="2">2-ci sinif</option><option value="3">3-cü sinif</option>
+          <option value="4">4-cü sinif</option><option value="5">5-ci sinif</option>
+          <option value="6">6-cı sinif</option>
+        </select>
+        <button onclick="refreshAdmin()" style="padding:9px 18px;background:linear-gradient(135deg,#0f1f3d,#1a3a6e);color:#fff;border:none;border-radius:9px;font-size:0.82rem;font-weight:700;cursor:pointer;">🔄 Yenilə</button>
+        <button onclick="exportCSV()" style="padding:9px 18px;background:linear-gradient(135deg,#1a7a40,#2ea866);color:#fff;border:none;border-radius:9px;font-size:0.82rem;font-weight:700;cursor:pointer;">📥 CSV Yüklə</button>
+        <button onclick="clearAllData()" style="padding:9px 18px;background:rgba(200,50,50,0.1);color:#c03232;border:1px solid rgba(200,50,50,0.2);border-radius:9px;font-size:0.82rem;font-weight:700;cursor:pointer;">🗑 Hamısını sil</button>
+      </div>
+
+      <!-- Table -->
+      <div style="background:#fff;border-radius:14px;border:1px solid rgba(15,31,61,0.08);overflow:hidden;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.82rem;" id="adminTable">
+          <thead>
+            <tr style="background:linear-gradient(135deg,#0f1f3d,#1a3a6e);">
+              <th style="padding:12px 14px;text-align:left;color:rgba(255,255,255,0.7);font-weight:700;font-size:0.72rem;letter-spacing:0.5px;">#</th>
+              <th style="padding:12px 14px;text-align:left;color:rgba(255,255,255,0.7);font-weight:700;font-size:0.72rem;letter-spacing:0.5px;">AD SOYAD</th>
+              <th style="padding:12px 14px;text-align:left;color:rgba(255,255,255,0.7);font-weight:700;font-size:0.72rem;letter-spacing:0.5px;">SİNİF</th>
+              <th style="padding:12px 14px;text-align:left;color:rgba(255,255,255,0.7);font-weight:700;font-size:0.72rem;letter-spacing:0.5px;">FƏNN</th>
+              <th style="padding:12px 14px;text-align:center;color:rgba(255,255,255,0.7);font-weight:700;font-size:0.72rem;letter-spacing:0.5px;">NƏTİCƏ</th>
+              <th style="padding:12px 14px;text-align:center;color:rgba(255,255,255,0.7);font-weight:700;font-size:0.72rem;letter-spacing:0.5px;">XAL</th>
+              <th style="padding:12px 14px;text-align:center;color:rgba(255,255,255,0.7);font-weight:700;font-size:0.72rem;letter-spacing:0.5px;">SERTİFİKAT</th>
+              <th style="padding:12px 14px;text-align:left;color:rgba(255,255,255,0.7);font-weight:700;font-size:0.72rem;letter-spacing:0.5px;">VAXT</th>
+            </tr>
+          </thead>
+          <tbody id="adminTbody">
+            <tr><td colspan="8" style="padding:40px;text-align:center;color:#6b7c93;">Yüklənir...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════ ADMİN PANELİ MƏNTIQI ════
+let adminData = [];
+let adminUnlocked = false;
+
+function openAdmin(){
+  document.getElementById('adminModal').classList.add('open');
+  document.getElementById('adminPassInp').value='';
+  document.getElementById('adminLocked').style.display='flex';
+  document.getElementById('adminContent').style.display='none';
+  adminUnlocked=false;
+}
+function closeAdmin(){ document.getElementById('adminModal').classList.remove('open'); }
+
+function checkAdminPass(){
+  const v=document.getElementById('adminPassInp').value;
+  if(v===ADMIN_PASS){
+    adminUnlocked=true;
+    document.getElementById('adminLocked').style.display='none';
+    document.getElementById('adminContent').style.display='block';
+    refreshAdmin();
+  } else {
+    document.getElementById('adminPassInp').style.borderColor='#e05050';
+    setTimeout(()=>document.getElementById('adminPassInp').style.borderColor='',1200);
+  }
+}
+
+async function refreshAdmin(){
+  const tbody=document.getElementById('adminTbody');
+  tbody.innerHTML='<tr><td colspan="8" style="padding:40px;text-align:center;color:#6b7c93;">⏳ Yüklənir...</td></tr>';
+  adminData = await loadParticipants();
+  updateStats();
+  renderAdminTable();
+}
+
+function updateStats(){
+  const today=new Date().toLocaleDateString('az-AZ');
+  document.getElementById('stTotal').textContent=adminData.length;
+  document.getElementById('stCert').textContent=adminData.filter(p=>p.sertifikat).length;
+  const avg=adminData.length?Math.round(adminData.reduce((s,p)=>s+p.faiz,0)/adminData.length):0;
+  document.getElementById('stAvg').textContent=avg+'%';
+  document.getElementById('stToday').textContent=adminData.filter(p=>p.tarix===today).length;
+}
+
+function renderAdminTable(){
+  const search=(document.getElementById('adminSearch')?.value||'').toLowerCase();
+  const fennF=document.getElementById('adminFennFilter')?.value||'';
+  const sinifF=document.getElementById('adminSinifFilter')?.value||'';
+  let list=[...adminData].reverse();
+  if(search) list=list.filter(p=>p.ad?.toLowerCase().includes(search));
+  if(fennF) list=list.filter(p=>p.fenn===fennF);
+  if(sinifF) list=list.filter(p=>String(p.sinif)===sinifF);
+
+  if(!list.length){
+    document.getElementById('adminTbody').innerHTML=
+      '<tr><td colspan="8" style="padding:40px;text-align:center;color:#6b7c93;">İştirakçı tapılmadı</td></tr>';
+    return;
+  }
+
+  const colorFor=(pct)=>pct>=90?'#1a7a40':pct>=60?'#c9993a':'#c03232';
+  document.getElementById('adminTbody').innerHTML=list.map((p,i)=>`
+    <tr style="border-bottom:1px solid rgba(15,31,61,0.06);${i%2===0?'background:#fafbfc':''}">
+      <td style="padding:11px 14px;color:#9a9ab0;font-size:0.78rem;">${adminData.length-i}</td>
+      <td style="padding:11px 14px;font-weight:700;color:#0f1f3d;">${p.ad||'—'}</td>
+      <td style="padding:11px 14px;color:#5a6e85;">${p.sinif}-ci sinif</td>
+      <td style="padding:11px 14px;color:#5a6e85;">${p.fenn||'—'}</td>
+      <td style="padding:11px 14px;text-align:center;">
+        <span style="background:${colorFor(p.faiz)}18;color:${colorFor(p.faiz)};padding:3px 10px;border-radius:8px;font-weight:700;font-size:0.82rem;">${p.faiz}% (${p.duzgun}/${p.duzgun+p.yanlis})</span>
+      </td>
+      <td style="padding:11px 14px;text-align:center;font-weight:700;color:#c9993a;">${p.xal}</td>
+      <td style="padding:11px 14px;text-align:center;">${p.sertifikat?'<span style="color:#1a7a40;font-size:1rem;">✅</span>':'<span style="color:#ccc;">—</span>'}</td>
+      <td style="padding:11px 14px;color:#9a9ab0;font-size:0.78rem;">${p.tarix||''} ${p.saat||''}</td>
+    </tr>`).join('');
+}
+
+function exportCSV(){
+  if(!adminData.length){ alert('Məlumat yoxdur.'); return; }
+  const header='Ad Soyad,Sinif,Fənn,Nəticə(%),Düzgün,Yanlış,Xal,Sertifikat,Tarix,Saat';
+  const rows=adminData.map(p=>
+    `"${p.ad}",${p.sinif},"${p.fenn}",${p.faiz},${p.duzgun},${p.yanlis},${p.xal},${p.sertifikat?'Bəli':'Xeyr'},"${p.tarix}","${p.saat}"`
+  );
+  const csv=[header,...rows].join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
+  a.download='NilAr_Ishtirakcilar_'+new Date().toLocaleDateString('az-AZ').replace(/\./g,'-')+'.csv';
+  a.click();
+}
+
+function clearAllData(){
+  if(!confirm('Bütün iştirakçı məlumatlarını silmək istəyirsiniz?')) return;
+  localStorage.removeItem('nilar_data');
+  adminData=[];
+  updateStats(); renderAdminTable();
+}
+
+document.getElementById('adminModal').addEventListener('click',e=>{
+  if(e.target===e.currentTarget) closeAdmin();
+});
+</script>
+
+<script>
+document.getElementById('hdrXal').textContent=totalXal;
+document.addEventListener('click', function startOnce(){
+  playMusic('home');
+  document.removeEventListener('click', startOnce);
+},{once:true});
+</script>
+</body>
+</html>
