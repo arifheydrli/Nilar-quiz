@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NilAr Edu — Bilik Yarışması</title>
+<meta name="theme-color" content="#0f1f3d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NilAr Quiz">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='24' fill='%230f1f3d'/><text x='96' y='130' font-size='100' text-anchor='middle'>🎓</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -219,7 +225,7 @@ header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:0 5%;
     <h1 class="home-title">Biliyi sına,<br><em>sertifikat</em> qazан!</h1>
     <p class="home-desc">Peşəkar suallarla özünü yoxla. 90%+ nəticə üçün fərdi sertifikat alacaqsan.</p>
     <div class="home-features">
-      <div class="feat-chip">⏱ 20 saniyə / sual</div>
+      <div class="feat-chip">⏱ 40 saniyə / sual</div>
       <div class="feat-chip">🧠 Məntiqi suallar</div>
       <div class="feat-chip">🏅 Sertifikat</div>
       <div class="feat-chip">⭐ Xal sistemi</div>
@@ -231,7 +237,7 @@ header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:0 5%;
     <p>Adını daxil et, sinif və fənn seç — oyun başlasın.</p>
 
     <label class="inp-label">Ad Soyad</label>
-    <input class="inp" id="nameInp" placeholder="Məs: Əli Məmmədov" oninput="checkForm()">
+    <input class="inp" id="nameInp" placeholder="Məs: Əli Məmmədov" oninput="chk()">
 
     <label class="inp-label" style="margin-bottom:10px;">Sinif</label>
     <div class="sinif-row">
@@ -1710,6 +1716,13 @@ document.addEventListener('click', function startOnce(){
   playMusic('home');
   document.removeEventListener('click', startOnce);
 },{once:true});
+
+// PWA Service Worker
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  });
+}
 </script>
 </body>
 </html>
