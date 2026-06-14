@@ -237,7 +237,7 @@ header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:0 5%;
     <p>Adını daxil et, sinif və fənn seç — oyun başlasın.</p>
 
     <label class="inp-label">Ad Soyad</label>
-    <input class="inp" id="nameInp" placeholder="Məs: Əli Məmmədov" oninput="chk()">
+    <input class="inp" id="nameInp" placeholder="Məs: Əli Məmmədov" oninput="try{chk()}catch(e){}">
 
     <label class="inp-label" style="margin-bottom:10px;">Sinif</label>
     <div class="sinif-row">
@@ -564,7 +564,7 @@ const FCFG = {
 };
 
 // ════ STATE ════
-let name='',sinif=null,fenn=null,qs=[],idx=0,cor=0,wrg=0,xal=0;
+let userName='',sinif=null,fenn=null,qs=[],idx=0,cor=0,wrg=0,xal=0;
 let tInt=null,tLeft=40;
 let totalXal=parseInt(localStorage.getItem('nilx')||'0');
 const TMAX=201;
@@ -591,8 +591,8 @@ function selFenn(k){
   chk();
 }
 function chk(){
-  name=document.getElementById('nameInp').value.trim();
-  document.getElementById('startBtn').disabled=!(name.length>=2&&sinif&&fenn);
+  userName=document.getElementById('nameInp').value.trim();
+  document.getElementById('startBtn').disabled=!(userName.length>=2&&sinif&&fenn);
 }
 
 // ════ WhatsApp BİLDİRİŞ SİSTEMİ ════
@@ -649,7 +649,9 @@ async function loadParticipants(){
 
 // ════ QUIZ ════
 function startQuiz(){
-  name=document.getElementById('nameInp').value.trim();
+  if(_sinif) sinif=_sinif;
+  if(_fenn) fenn=_fenn;
+  userName=document.getElementById('nameInp').value.trim();
   const pool=[...(DB[sinif]?.[fenn]||[])];
   for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
   qs=pool.slice(0,10); idx=0; cor=0; wrg=0; xal=0;
@@ -755,7 +757,7 @@ function showResult(){
   // İştirakçını saxla
   const now = new Date();
   saveParticipant({
-    ad: name,
+    ad: userName,
     sinif: sinif,
     fenn: fc?.n||fenn,
     duzgun: cor,
@@ -768,7 +770,7 @@ function showResult(){
   });
 
   let em,ti,su;
-  if(pct>=90){em='🏆';ti='Möhtəşəm nəticə!';su=`${name}, sən bu fənni əla bilirsən!`;SND.fanfare();}
+  if(pct>=90){em='🏆';ti='Möhtəşəm nəticə!';su=`${userName}, sən bu fənni əla bilirsən!`;SND.fanfare();}
   else if(pct>=75){em='🌟';ti='Çox yaxşı!';su='Az qaldı mükəmmələ, bir az daha çalış!';SND.fanfare();}
   else if(pct>=60){em='👍';ti='Yaxşı cəhd!';su='Zəif məqamlarını aşkar et, daha çox oxu!';SND.correct();}
   else if(pct>=40){em='💪';ti='Davam et!';su='Möhkəm çalışmaq lazımdır, bacarırsın!';SND.wrong();}
@@ -788,7 +790,7 @@ function showResult(){
   medals.push({t:`${sinif}-ci sinif · ${fc?.n||''}`,bg:'rgba(0,0,0,0.05)',c:'#444'});
   document.getElementById('medalsRow').innerHTML=medals.map(m=>`<span class="medal-chip" style="background:${m.bg};color:${m.c}">${m.t}</span>`).join('');
   const certBtn=document.getElementById('certBtn');
-  if(pct>=90){certBtn.className='cert-btn show';certBtn.textContent='🏅 Sertifikatı Al — '+name;}
+  if(pct>=90){certBtn.className='cert-btn show';certBtn.textContent='🏅 Sertifikatı Al — '+userName;}
   else{certBtn.className='cert-btn';certBtn.textContent='';}
   if(pct>=75) spawnCnf(25);
 }
@@ -983,7 +985,7 @@ function drawCert(){
   nameG2.addColorStop(0,'#5a3800'); nameG2.addColorStop(0.4,'#3d2200');
   nameG2.addColorStop(0.6,'#5a3800'); nameG2.addColorStop(1,'#3d2200');
   ctx.fillStyle=nameG2;
-  ctx.fillText(name, W/2, 291);
+  ctx.fillText(userName, W/2, 291);
   ctx.shadowBlur=0;
 
   // ══ FƏNN / SİNİF ══
@@ -1109,7 +1111,7 @@ function roundRect(ctx,x,y,w,h,r){
 function downloadCert(){
   const cvs=document.getElementById('certCanvas');
   const a=document.createElement('a');
-  a.download=`NilAr_Sertifikat_${name.replace(/ /g,'_')}.png`;
+  a.download=`NilAr_Sertifikat_${userName.replace(/ /g,'_')}.png`;
   a.href=cvs.toDataURL('image/png');
   a.click();
 }
