@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NilAr — Şagird Profili</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:linear-gradient(160deg,#0d1b3e,#1a1060,#0d3060,#0a4a4a);min-height:100vh;color:#fff;background-attachment:fixed}
+header{background:linear-gradient(135deg,#08091e,#150d50,#082050);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;box-shadow:0 3px 20px rgba(0,0,0,0.5);border-bottom:1px solid rgba(240,192,96,0.2)}
+.logo{font-weight:900;color:#f0c060;font-size:1.1rem}
+.logo small{display:block;font-size:0.6rem;color:rgba(255,255,255,0.3);font-weight:400;letter-spacing:1px}
+.hbtn{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);padding:7px 12px;border-radius:9px;color:rgba(255,255,255,0.6);cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:600;text-decoration:none;display:inline-block}
+
+.scr{display:none;max-width:660px;margin:0 auto;padding:20px;padding-bottom:40px}
+.scr.on{display:block}
+
+/* GİRİŞ */
+.gh{text-align:center;padding:30px 0 24px}
+.gbadge{display:inline-block;background:rgba(240,192,96,0.12);border:1px solid rgba(240,192,96,0.3);padding:6px 18px;border-radius:20px;font-size:0.72rem;font-weight:700;color:#f0c060;letter-spacing:1px;margin-bottom:14px}
+.gh h1{font-size:2rem;font-weight:900;margin-bottom:8px}
+.gh h1 em{color:#f0c060;font-style:normal}
+.gh p{color:rgba(255,255,255,0.4);font-size:0.85rem}
+.card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:22px;margin-bottom:14px}
+.lbl{font-size:0.7rem;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:8px;display:block}
+.inp{width:100%;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:12px 15px;color:#fff;font-family:'Outfit',sans-serif;font-size:0.95rem;outline:none;margin-bottom:12px}
+.inp:focus{border-color:#f0c060}
+.inp::placeholder{color:rgba(255,255,255,0.25)}
+.gbtn{width:100%;padding:14px;background:linear-gradient(135deg,#c9993a,#f0c060);color:#0f1f3d;border:none;border-radius:12px;font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:800;cursor:pointer}
+.gerr{color:#ff6b6b;font-size:0.78rem;margin-top:8px;text-align:center;display:none}
+.gerr.on{display:block}
+
+/* PROFİL */
+.phead{text-align:center;padding:24px 0 20px}
+.pavatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#c9993a,#f0c060);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px;font-weight:900;color:#0f1f3d}
+.pname{font-size:1.6rem;font-weight:900;margin-bottom:4px}
+.psub{color:rgba(255,255,255,0.4);font-size:0.82rem}
+
+/* STATS */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
+.stat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px 10px;text-align:center}
+.sv{font-size:1.6rem;font-weight:900;display:block;margin-bottom:3px}
+.sk{font-size:0.65rem;color:rgba(255,255,255,0.35)}
+.sv.gold{color:#f0c060}
+.sv.green{color:#2ecc71}
+.sv.blue{color:#339af0}
+
+/* FƏNN STATİSTİKASI */
+.fstat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px;margin-bottom:14px}
+.fstat h3{font-size:0.85rem;font-weight:700;margin-bottom:12px;color:#f0c060}
+.frow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.fic{font-size:1.1rem;width:28px;text-align:center;flex-shrink:0}
+.fn{font-size:0.78rem;font-weight:600;flex:1}
+.fbar{flex:2;height:8px;background:rgba(255,255,255,0.1);border-radius:8px;overflow:hidden}
+.fbf{height:100%;border-radius:8px;background:linear-gradient(90deg,#c9993a,#f0c060);transition:width .6s}
+.fpct{font-size:0.72rem;color:#f0c060;font-weight:700;width:35px;text-align:right}
+
+/* TARİXÇƏ */
+.hist{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px;margin-bottom:14px}
+.hist h3{font-size:0.85rem;font-weight:700;margin-bottom:12px;color:#f0c060}
+.hitem{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.hitem:last-child{border-bottom:none;padding-bottom:0}
+.hem{font-size:1.2rem;width:30px;text-align:center;flex-shrink:0}
+.hinfo{flex:1}
+.hname{font-size:0.82rem;font-weight:700}
+.hdate{font-size:0.68rem;color:rgba(255,255,255,0.35)}
+.hpct{font-size:1rem;font-weight:900}
+.hpct.good{color:#2ecc71}
+.hpct.mid{color:#f0c060}
+.hpct.bad{color:#ff6b6b}
+.hempty{text-align:center;padding:20px;color:rgba(255,255,255,0.3);font-size:0.85rem}
+
+/* LİDERLİK */
+.lead{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:16px;margin-bottom:14px}
+.lead h3{font-size:0.85rem;font-weight:700;margin-bottom:12px;color:#f0c060}
+.litem{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.litem:last-child{border-bottom:none;padding-bottom:0}
+.litem.me{background:rgba(240,192,96,0.08);border-radius:10px;padding:9px 10px;margin:-2px -4px;border:1px solid rgba(240,192,96,0.2)}
+.lrank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:800;flex-shrink:0}
+.lrank.r1{background:linear-gradient(135deg,#FFD700,#FFA500);color:#000}
+.lrank.r2{background:linear-gradient(135deg,#C0C0C0,#A8A8A8);color:#000}
+.lrank.r3{background:linear-gradient(135deg,#CD7F32,#A0522D);color:#fff}
+.lrank.rn{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5)}
+.lname{flex:1;font-size:0.82rem;font-weight:600}
+.lname small{display:block;font-size:0.65rem;color:rgba(255,255,255,0.35)}
+.lxal{font-size:0.9rem;font-weight:800;color:#f0c060}
+
+/* ÇIXIŞ */
+.cikis{width:100%;padding:12px;background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.2);color:#ff6b6b;border-radius:11px;font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;margin-top:8px}
+
+/* TAB */
+.tabs{display:flex;gap:6px;margin-bottom:16px;background:rgba(255,255,255,0.05);padding:5px;border-radius:12px}
+.tab{flex:1;padding:9px 4px;text-align:center;border-radius:9px;font-size:0.75rem;font-weight:700;cursor:pointer;color:rgba(255,255,255,0.4);transition:all .2s}
+.tab.on{background:linear-gradient(135deg,#c9993a,#f0c060);color:#0f1f3d}
+
+@media(max-width:400px){
+.stat-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">NilAr Edu<small>ŞAGİRD PROFİLİ</small></div>
+  <div style="display:flex;gap:8px">
+    <a class="hbtn" href="index.html">🏠 Quiz</a>
+    <a class="hbtn" href="nilar-blok-imtahan.html">📚 Blok</a>
+  </div>
+</header>
+
+<!-- GİRİŞ -->
+<div class="scr on" id="girisScr">
+  <div class="gh">
+    <div class="gbadge">👤 Şagird Profili</div>
+    <h1>Profilinə<br><em>daxil ol!</em></h1>
+    <p>Nəticələrini, xallarını və sertifikatlarını gör</p>
+  </div>
+  <div class="card">
+    <span class="lbl">Adın Soyadın</span>
+    <input class="inp" id="adInp" placeholder="Adınızı yazın..." type="text">
+    <button class="gbtn" onclick="giris()">Profilə Daxil Ol →</button>
+    <div class="gerr" id="gerr">⚠️ Adınızı daxil edin!</div>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.08);font-size:0.75rem;color:rgba(255,255,255,0.35);text-align:center">
+      Profil məlumatları yalnız bu cihazda saxlanır.<br>Eyni adla daxil olun — nəticələriniz görünəcək.
+    </div>
+  </div>
+</div>
+
+<!-- PROFİL -->
+<div class="scr" id="profilScr">
+  <div class="phead">
+    <div class="pavatar" id="pavatar">F</div>
+    <div class="pname" id="pname">Fəqan</div>
+    <div class="psub" id="psub">NilAr Edu Center şagirdi</div>
+  </div>
+
+  <!-- ÜMUMI STATS -->
+  <div class="stat-grid">
+    <div class="stat"><span class="sv gold" id="stXal">0</span><span class="sk">⭐ Ümumi Xal</span></div>
+    <div class="stat"><span class="sv green" id="stTest">0</span><span class="sk">📝 Test Sayı</span></div>
+    <div class="stat"><span class="sv blue" id="stOrta">0%</span><span class="sk">📊 Orta Nəticə</span></div>
+  </div>
+
+  <!-- TABLAR -->
+  <div class="tabs">
+    <div class="tab on" onclick="tabSec(0)">📊 Statistika</div>
+    <div class="tab" onclick="tabSec(1)">📋 Tarixçə</div>
+    <div class="tab" onclick="tabSec(2)">🏆 Liderlik</div>
+  </div>
+
+  <!-- STATİSTİKA TAB -->
+  <div id="tab0">
+    <div class="fstat">
+      <h3>📈 Fənn üzrə nəticələr</h3>
+      <div id="fennStat"><div class="hempty">Hələ test yoxdur</div></div>
+    </div>
+    <div class="fstat">
+      <h3>🏅 Sertifikatlar</h3>
+      <div id="certList"><div class="hempty">Hələ sertifikat yoxdur (90%+ lazımdır)</div></div>
+    </div>
+  </div>
+
+  <!-- TARİXÇƏ TAB -->
+  <div id="tab1" style="display:none">
+    <div class="hist">
+      <h3>📋 Test tarixçəsi</h3>
+      <div id="histList"><div class="hempty">Hələ test yoxdur</div></div>
+    </div>
+  </div>
+
+  <!-- LİDERLİK TAB -->
+  <div id="tab2" style="display:none">
+    <div class="lead">
+      <h3>🏆 Liderlik cədvəli</h3>
+      <div id="leadList"><div class="hempty">Hələ məlumat yoxdur</div></div>
+    </div>
+  </div>
+
+  <button class="cikis" onclick="cixis()">🚪 Çıxış</button>
+</div>
+
+<script>
+var CARI_AD = "";
+
+function giris(){
+  var ad = document.getElementById("adInp").value.trim();
+  if(!ad){document.getElementById("gerr").className="gerr on";return;}
+  document.getElementById("gerr").className="gerr";
+  CARI_AD = ad;
+  profilGoster(ad);
+}
+
+function profilGoster(ad){
+  // Avatar
+  var av = document.getElementById("pavatar");
+  av.textContent = ad.charAt(0).toUpperCase();
+
+  document.getElementById("pname").textContent = ad;
+  document.getElementById("psub").textContent = "NilAr Edu Center şagirdi";
+
+  // Bütün nəticələri yüklə
+  var quizData = [];
+  var blokData = [];
+  try{quizData = JSON.parse(localStorage.getItem("nqd")||"[]");}catch(e){}
+  try{blokData = JSON.parse(localStorage.getItem("nbd")||"[]");}catch(e){}
+
+  // Şagirdin nəticələrini filtr et
+  var menim = quizData.filter(function(x){return x.ad && x.ad.toLowerCase() === ad.toLowerCase();});
+  var meninBlok = blokData.filter(function(x){return x.ad && x.ad.toLowerCase() === ad.toLowerCase();});
+  var hemumuNetic = menim.concat(meninBlok);
+
+  // Ümumi stats
+  var umXal = 0;
+  hemumuNetic.forEach(function(x){umXal += (x.xal||0);});
+  // Quiz xalları da əlavə et
+  var quizXal = parseInt(localStorage.getItem("nqx")||"0");
+  var blokXal = parseInt(localStorage.getItem("nbx")||"0");
+
+  document.getElementById("stXal").textContent = quizXal + blokXal;
+  document.getElementById("stTest").textContent = hemumuNetic.length;
+  if(hemumuNetic.length > 0){
+    var ort = Math.round(hemumuNetic.reduce(function(s,x){return s+(x.faiz||0);},0)/hemumuNetic.length);
+    document.getElementById("stOrta").textContent = ort+"%";
+  } else {
+    document.getElementById("stOrta").textContent = "—";
+  }
+
+  // Fənn statistikası
+  var fennMap = {};
+  var fennIco = {
+    "azerbaycan":"📝","riyaziyyat":"🔢","heyat":"🌍","tebiyet":"🔬",
+    "fizika":"⚛️","kimya":"⚗️","informatika":"💻","biologiya":"🧬",
+    "tarix":"🏛️","cografiya":"🌍","azerbaycan_edebiyyat":"📚"
+  };
+  hemumuNetic.forEach(function(x){
+    var k = x.fenn || "digər";
+    if(!fennMap[k]) fennMap[k] = {sum:0, count:0};
+    fennMap[k].sum += (x.faiz||0);
+    fennMap[k].count++;
+  });
+
+  var fs = document.getElementById("fennStat");
+  if(Object.keys(fennMap).length === 0){
+    fs.innerHTML = '<div class="hempty">Hələ test yoxdur</div>';
+  } else {
+    var html = "";
+    Object.keys(fennMap).forEach(function(k){
+      var avg = Math.round(fennMap[k].sum / fennMap[k].count);
+      var ico = fennIco[k] || "📖";
+      html += '<div class="frow">';
+      html += '<span class="fic">'+ico+'</span>';
+      html += '<span class="fn">'+k+'</span>';
+      html += '<div class="fbar"><div class="fbf" style="width:'+avg+'%"></div></div>';
+      html += '<span class="fpct">'+avg+'%</span>';
+      html += '</div>';
+    });
+    fs.innerHTML = html;
+  }
+
+  // Sertifikatlar
+  var certs = hemumuNetic.filter(function(x){return x.faiz >= 90;});
+  var cl = document.getElementById("certList");
+  if(certs.length === 0){
+    cl.innerHTML = '<div class="hempty">Hələ sertifikat yoxdur (90%+ lazımdır)</div>';
+  } else {
+    var chtml = "";
+    certs.forEach(function(c){
+      chtml += '<div class="hitem">';
+      chtml += '<span class="hem">🏅</span>';
+      chtml += '<div class="hinfo"><div class="hname">'+(c.fenn||c.sinif+"-ci sinif")+'</div><div class="hdate">'+(c.tarix||"")+'</div></div>';
+      chtml += '<span class="hpct good">'+c.faiz+'%</span>';
+      chtml += '</div>';
+    });
+    cl.innerHTML = chtml;
+  }
+
+  // Tarixçə
+  var hl = document.getElementById("histList");
+  if(hemumuNetic.length === 0){
+    hl.innerHTML = '<div class="hempty">Hələ test yoxdur</div>';
+  } else {
+    var hhtml = "";
+    hemumuNetic.slice().reverse().forEach(function(x){
+      var f = x.faiz || 0;
+      var cls = f>=90?"good":f>=60?"mid":"bad";
+      var em = f>=90?"🏆":f>=70?"🌟":f>=50?"👍":"📚";
+      hhtml += '<div class="hitem">';
+      hhtml += '<span class="hem">'+em+'</span>';
+      hhtml += '<div class="hinfo">';
+      hhtml += '<div class="hname">'+(x.sinif?x.sinif+"-ci sinif · ":"")+(x.qrup?x.qrup+" · ":"")+(x.fenn||"")+'</div>';
+      hhtml += '<div class="hdate">'+(x.tarix||"")+" "+(x.saat||"")+'</div>';
+      hhtml += '</div>';
+      hhtml += '<span class="hpct '+cls+'">'+f+'%</span>';
+      hhtml += '</div>';
+    });
+    hl.innerHTML = hhtml;
+  }
+
+  // Liderlik cədvəli
+  liderlikGoster(ad);
+
+  show("profilScr");
+}
+
+function liderlikGoster(meninAd){
+  // Bütün nəticələri yüklə
+  var quizData = [];
+  var blokData = [];
+  try{quizData = JSON.parse(localStorage.getItem("nqd")||"[]");}catch(e){}
+  try{blokData = JSON.parse(localStorage.getItem("nbd")||"[]");}catch(e){}
+  var hemumuNetic = quizData.concat(blokData);
+
+  // Hər şagird üçün ümumi xal hesabla
+  var xalMap = {};
+  hemumuNetic.forEach(function(x){
+    if(!x.ad) return;
+    if(!xalMap[x.ad]) xalMap[x.ad] = {xal:0, test:0};
+    xalMap[x.ad].xal += (x.xal||0);
+    xalMap[x.ad].test++;
+  });
+
+  var siyahi = Object.keys(xalMap).map(function(ad){
+    return {ad:ad, xal:xalMap[ad].xal, test:xalMap[ad].test};
+  });
+  siyahi.sort(function(a,b){return b.xal - a.xal;});
+
+  var ll = document.getElementById("leadList");
+  if(siyahi.length === 0){
+    ll.innerHTML = '<div class="hempty">Hələ məlumat yoxdur</div>';
+    return;
+  }
+
+  var lhtml = "";
+  siyahi.slice(0,20).forEach(function(s,i){
+    var rank = i+1;
+    var rCls = rank===1?"r1":rank===2?"r2":rank===3?"r3":"rn";
+    var isMenem = s.ad.toLowerCase() === meninAd.toLowerCase();
+    lhtml += '<div class="litem'+(isMenem?" me":"")+'">';
+    lhtml += '<div class="lrank '+rCls+'">'+rank+'</div>';
+    lhtml += '<div class="lname">'+s.ad+'<small>'+s.test+' test</small></div>';
+    lhtml += '<div class="lxal">⭐ '+s.xal+'</div>';
+    lhtml += '</div>';
+  });
+  ll.innerHTML = lhtml;
+}
+
+function tabSec(n){
+  document.querySelectorAll(".tab").forEach(function(t,i){
+    t.className = i===n?"tab on":"tab";
+  });
+  document.getElementById("tab0").style.display = n===0?"block":"none";
+  document.getElementById("tab1").style.display = n===1?"block":"none";
+  document.getElementById("tab2").style.display = n===2?"block":"none";
+}
+
+function cixis(){
+  CARI_AD = "";
+  document.getElementById("adInp").value = "";
+  show("girisScr");
+}
+
+function show(id){
+  document.querySelectorAll(".scr").forEach(function(s){s.className="scr";});
+  document.getElementById(id).className="scr on";
+  window.scrollTo(0,0);
+}
+
+// Enter ilə giriş
+document.getElementById("adInp").addEventListener("keyup",function(e){
+  if(e.key==="Enter") giris();
+});
+</script>
+</body>
+</html>
