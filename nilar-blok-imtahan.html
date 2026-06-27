@@ -47,7 +47,7 @@ header{background:#08091e;padding:14px 20px;display:flex;align-items:center;just
 .inp::placeholder{color:rgba(255,255,255,0.25)}
 .lbl2{font-size:0.7rem;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:8px;margin-top:16px;display:block}
 .lbl2:first-child{margin-top:0}
-.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .qbtn{background:rgba(255,255,255,0.05);border:2px solid transparent;border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .2s}
 .qbtn.sel{border-color:#f0c060;background:rgba(240,192,96,0.08)}
 .qbtn .qn{font-size:1.3rem;font-weight:900;color:#f0c060;display:block;margin-bottom:4px}
@@ -191,6 +191,26 @@ header{background:#08091e;padding:14px 20px;display:flex;align-items:center;just
         <span class="qn">1-ci Qrup</span>
         <span class="qname">Texniki</span>
         <span class="qf">🔢 Riyaziyyat<br>⚛️ Fizika<br>⚗️ Kimya<br>💻 İnformatika</span>
+      </div>
+      <div class="qbtn" id="q2" onclick="qrupSec(2)">
+        <span class="qn">2-ci Qrup</span>
+        <span class="qname">Humanitar-Coğrafiya</span>
+        <span class="qf">🔢 Riyaziyyat<br>🏛️ Tarix<br>🌍 Coğrafiya</span>
+      </div>
+      <div class="qbtn" id="q3" onclick="qrupSec(3)">
+        <span class="qn">3-cü Qrup</span>
+        <span class="qname">Humanitar</span>
+        <span class="qf">📝 Az. dili<br>📚 Ədəbiyyat<br>🏛️ Tarix</span>
+      </div>
+      <div class="qbtn" id="q2" onclick="qrupSec(2)">
+        <span class="qn">2-ci Qrup</span>
+        <span class="qname">Humanitar-Coğrafiya</span>
+        <span class="qf">🔢 Riyaziyyat<br>🏛️ Tarix<br>🌍 Coğrafiya</span>
+      </div>
+      <div class="qbtn" id="q3" onclick="qrupSec(3)">
+        <span class="qn">3-cü Qrup</span>
+        <span class="qname">Humanitar</span>
+        <span class="qf">📝 Az. dili<br>📚 Ədəbiyyat<br>🏛️ Tarix</span>
       </div>
       <div class="qbtn" id="q4" onclick="qrupSec(4)">
         <span class="qn">4-cü Qrup</span>
@@ -421,6 +441,114 @@ var DB = {
     {e:"🔬",d:"m",q:"Ekosistemdə enerji axisi hansi istiqamededir?",o:["istehlaкcidan istehsalciya","istehsalcidan istehlakçiya","parcalayicidan istehsalciya","her iki istiquemet","dovri"],a:1,i:"Enerji: istehsalci → herbivior → karnivior → parcalayici"},
     {e:"🧬",d:"m",q:"Hansi orqanizm prokaryotdur?",o:["gobeler","yosun","bakteriya","amoba","virus"],a:2,i:"Bakteriya prokaryot: nuvesi yoxdur, DNT sitoplazmadadir"},
     {e:"🔬",d:"h",q:"Mendelin 1-ci qanunu ne deyir?",o:["ayrilma","musteqil birlesme","dominantliq (uniformluq)","qtl analizi","surusme"],a:2,i:"1-ci qanun: F₁ neslinin butun ferdleri dominant elamet gosterir"}
+  ],
+  tarix:[
+    {e:"🏛️",d:"h",q:"Azərbaycan Xalq Cümhuriyyəti nə vaxt elan edildi?",o:["1917-ci il may","1918-ci il may 28","1920-ci il aprel","1991-ci il oktyabr"],a:1,i:"AXC 28 may 1918-ci ildə elan edildi — müsəlman Şərqinin ilk demokratik respublikası."},
+    {e:"🏛️",d:"h",q:"Azərbaycanda Sovet hakimiyyəti nə vaxt quruldu?",o:["1917","1918","1920","1922"],a:2,i:"28 aprel 1920-ci ildə XI Qırmızı Ordu Azərbaycanı işğal etdi, Sovet hakimiyyəti quruldu."},
+    {e:"🏛️",d:"h",q:"Azərbaycanın müstəqilliyi bərpa edildi?",o:["1988","1990","1991","1993"],a:2,i:"18 oktyabr 1991-ci ildə Azərbaycan müstəqilliyini bərpa etdi."},
+    {e:"🏛️",d:"h",q:"Böyük İpək Yolu hansı iki qitəni birləşdirirdi?",o:["Afrika-Avropa","Avropa-Asiya","Asiya-Amerika","Amerika-Afrika"],a:1,i:"Böyük İpək Yolu Çindən Avropaya qədər uzanır, Azərbaycan tranzit mərkəzi idi."},
+    {e:"🏛️",d:"m",q:"Albaniya dövlətinin paytaxtı hansı şəhər idi?",o:["Bərdə","Qəbələ","Gəncə","Şamaxı"],a:1,i:"Qədim Albaniya dövlətinin paytaxtı Qəbələ (Kabalaka) şəhəri idi."},
+    {e:"🏛️",d:"h",q:"Şah İsmayıl Xətai hansı sülaləni yaratdı?",o:["Qaraqoyunlu","Ağqoyunlu","Səfəvilər","Elxanilər"],a:2,i:"Şah İsmayıl Xətai 1501-ci ildə Səfəvilər dövlətini qurdu, Təbrizi paytaxt etdi."},
+    {e:"🏛️",d:"h",q:"I Dünya Müharibəsi nə vaxt başladı?",o:["1912","1914","1916","1918"],a:1,i:"I Dünya Müharibəsi 28 iyul 1914-cü ildə Avro-Asiyanın böyük dövlətlərini əhatə edərək başladı."},
+    {e:"🏛️",d:"h",q:"II Dünya Müharibəsi nə vaxt sona çatdı?",o:["1943","1944","1945","1946"],a:2,i:"II Dünya Müharibəsi 1945-ci ildə sona çatdı: Avropa-may, Yaponiya-sentyabr."},
+    {e:"🏛️",d:"m",q:"Nizami Gəncəvi harada anadan olub?",o:["Bakı","Şamaxı","Gəncə","Naxçıvan"],a:2,i:"Nizami Gəncəvi (1141-1209) Gəncə şəhərində anadan olub, ömrünü orada keçirib."},
+    {e:"🏛️",d:"h",q:"Qarabağ müharibəsindəki atəşkəs sazişi nə vaxt imzalandı?",o:["1992","1993","1994","1995"],a:2,i:"12 may 1994-cü ildə Bişkek protokolu imzalandı — atəşkəs elan edildi."},
+    {e:"🏛️",d:"h",q:"Xəzər dənizinin hüquqi statusunu müəyyən edən müqavilə?",o:["1991 Alma-Ata","2003 Aktau","2018 Aktau","2020 Bakı"],a:2,i:"2018-ci ildə Aktauda Xəzər dənizinin hüquqi statusu haqqında Konvensiya imzalandı."},
+    {e:"🏛️",d:"h",q:"Azərbaycanın 44 günlük Vətən müharibəsi nə vaxt oldu?",o:["2016","2018","2020","2022"],a:2,i:"44 günlük Vətən Müharibəsi 27 sentyabr — 10 noyabr 2020-ci ildə baş verdi."},
+    {e:"🏛️",d:"m",q:"Qədim Romada ən ali hakimiyyət orqanı?",o:["Diktator","Konsul","Senat","İmperator"],a:2,i:"Roma Senatı qədim dövrdə ən ali qanunverici orqan idi."},
+    {e:"🏛️",d:"h",q:"Fransız inqilabı nə vaxt başladı?",o:["1775","1789","1799","1815"],a:1,i:"Fransız burjua inqilabı 1789-cu ildə Bastiliya qalasının alınması ilə başladı."},
+    {e:"🏛️",d:"h",q:"Osmanlı imperiyası nə vaxt dağıldı?",o:["1918","1920","1922","1924"],a:2,i:"Osmanlı imperiyası 1922-ci ildə sultanlığın ləğvi ilə rəsmən dağıldı."},
+    {e:"🏛️",d:"h",q:"Birinci dünya müharibəsinin baş verdiyi əsas səbəb?",o:["İqtisadi böhran","Millətçilik, imperializm, ittifaqlar sistemi","Din müharibəsi","Sülh müqaviləsi pozulması"],a:1,i:"Millətçilik, imperializm rəqabəti, silahlanma yarışı və bloklar sistemi müharibəyə səbəb oldu."},
+    {e:"🏛️",d:"m",q:"Makedoniyalı İsgəndər hansı dövrün hökmdarı idi?",o:["e.ə. VI əsr","e.ə. IV əsr","e.ə. II əsr","e.s. I əsr"],a:1,i:"İsgəndər e.ə. 356-323-cü illərdə yaşayıb, böyük imperiya qurub."},
+    {e:"🏛️",d:"h",q:"Soğuq müharibə hansı iki güc arasında idi?",o:["ABŞ-Çin","SSRİ-Çin","ABŞ-SSRİ","Avropa-Asiya"],a:2,i:"Soğuq müharibə (1947-1991) ABŞ başçılığındakı Qərb bloku ilə SSRİ başçılığındakı Şərq bloku arasında idi."},
+    {e:"🏛️",d:"h",q:"BМТ nə vaxt yaradıldı?",o:["1919","1939","1945","1950"],a:2,i:"BMT (Birləşmiş Millətlər Təşkilatı) 1945-ci ildə II Dünya Müharibəsindən sonra yaradıldı."},
+    {e:"🏛️",d:"m",q:"Azərbaycanda ilk neft foneli nə vaxt qazıldı?",o:["1846","1856","1871","1901"],a:0,i:"Bakı yaxınlığında dünyada ilk sənaye neft quyusu 1846-cı ildə qazıldı."},
+    {e:"🏛️",d:"h",q:"Ataturk Türkiyə Cümhuriyyətini nə vaxt elan etdi?",o:["1920","1921","1923","1924"],a:2,i:"Mustafa Kamal Atatürk 29 oktyabr 1923-cü ildə Türkiyə Cümhuriyyətini elan etdi."},
+    {e:"🏛️",d:"h",q:"Renessans (İntibah) dövrü harada başlandı?",o:["Fransa","Almaniya","İtaliya","İspaniya"],a:2,i:"Renessans XIV-XVI əsrlərdə İtaliyada başladı, incəsənət, elm, humanizm inkişaf etdi."},
+    {e:"🏛️",d:"h",q:"Hüseyn Cavid hansı il repressiya qurbanı oldu?",o:["1937","1939","1941","1944"],a:0,i:"Görkəmli şair Hüseyn Cavid 1937-ci ildə həbs edildi, 1941-ci ildə həyatını itirdi."},
+    {e:"🏛️",d:"m",q:"Çingiz xan kimdir?",o:["Çin imperatoru","Monqol imperiyasının qurucusu","Osmanlı sultanı","Ərəb xəlifəsi"],a:1,i:"Çingiz xan (1162-1227) Monqol imperiyasını qurdu — tarixdə ən böyük quru imperiyası."},
+    {e:"🏛️",d:"h",q:"Stalinin 1937-38-ci illərdəki repressiyaları Azərbaycana necə təsir etdi?",o:["Təsir etmədi","Yalnız siyasiləri tutdu","Minlərlə ziyalı, siyasətçi məhv edildi","Xalq razı qaldı"],a:2,i:"1937-38 repressiyalarında Azərbaycanda minlərlə ziyalı, elm, sənət xadimi güllələndi/sürgün edildi."}
+  ],
+  cografiya:[
+    {e:"🌍",d:"m",q:"Azərbaycanın sahəsi təxminən nə qədərdir?",o:["56.600 km²","86.600 km²","76.600 km²","96.600 km²"],a:1,i:"Azərbaycanın ümumi sahəsi 86.600 km²-dir."},
+    {e:"🌍",d:"m",q:"Azərbaycanın ən uzun çayı?",o:["Araz","Kür","Samur","Tərtər"],a:1,i:"Kür çayı Azərbaycanın ən uzun çayıdır (1515 km, Azərbaycanda ~900 km)."},
+    {e:"🏔️",d:"m",q:"Azərbaycanın ən hündür zirvəsi?",o:["Şahdağ","Bazardüzü","Murovdağ","Tufandağ"],a:1,i:"Bazardüzü (4466 m) — Azərbaycanın ən hündür nöqtəsi."},
+    {e:"🌊",d:"m",q:"Xəzər dənizinin sahəsi?",o:["271.000 km²","371.000 km²","171.000 km²","471.000 km²"],a:1,i:"Xəzər dənizinin sahəsi ~371.000 km² — dünyanın ən böyük qapalı su hövzəsi."},
+    {e:"🌍",d:"h",q:"Azərbaycanda hansı iqlim tipi üstünlük təşkil edir?",o:["Tropik","Ekvatorial","Mülayim","Arktik"],a:2,i:"Azərbaycanda mülayim kontinental iqlim üstünlük təşkil edir."},
+    {e:"🌍",d:"m",q:"Azərbaycanın ən böyük gölü?",o:["Hacıqabul","Sarısu","Ağgöl","Mingəçevir su anbarı"],a:3,i:"Mingəçevir su anbarı (~605 km²) — Azərbaycanda ən böyük süni su hövzəsi."},
+    {e:"🏔️",d:"h",q:"Dünyada ən hündür dağ zirvəsi?",o:["Mont Blan","Elbrüs","Everest (Comolunqma)","Kilimancaro"],a:2,i:"Everest (8849 m) — dünyanın ən hündür zirvəsi, Himalay dağlarında."},
+    {e:"🌍",d:"m",q:"Dünyanın ən böyük okeanı?",o:["Atlantik","Hind","Sakit","Arktik"],a:2,i:"Sakit okean (Pasifik) — dünyanın ən böyük və dərin okeanı (~165 mln km²)."},
+    {e:"🌍",d:"h",q:"Dünyanın ən böyük ölkəsi (sahəsinə görə)?",o:["Çin","Kanada","ABŞ","Rusiya"],a:3,i:"Rusiya ~17,1 mln km² ilə dünyanın ən böyük ölkəsidir."},
+    {e:"🌍",d:"m",q:"Avropanın ən uzun çayı?",o:["Dunay","Volqa","Reyn","Ural"],a:1,i:"Volqa çayı (3530 km) — Avropanın ən uzun çayı, Xəzər dənizinə tökülür."},
+    {e:"🌍",d:"h",q:"Azərbaycanda neçə iqtisadi-coğrafi zona var?",o:["5","8","10","12"],a:2,i:"Azərbaycan 10 iqtisadi-coğrafi zonaya bölünür."},
+    {e:"🏜️",d:"m",q:"Dünyanın ən böyük səhrası?",o:["Qobi","Sahara","Ərəbistan","Qarakum"],a:1,i:"Sahara (~9,2 mln km²) — dünyanın ən böyük isti səhrası, Afrikada."},
+    {e:"🌍",d:"h",q:"Azərbaycanla həmsərhəd olan ölkələr?",o:["4","5","6","7"],a:1,i:"Azərbaycan 5 ölkə ilə həmsərhəddir: Rusiya, Gürcüstan, Ermənistan, İran, Türkiyə."},
+    {e:"🌊",d:"h",q:"Atlantik okeanında isti axın hansıdır?",o:["Labradorlu","Qulfstrim","Oyaşio","Kurosio"],a:1,i:"Qulfstrim — Atlantik okeanındakı güclü isti su axını, Avropanın iqliminə böyük təsir göstərir."},
+    {e:"🌍",d:"m",q:"Dünyanın ən böyük qitəsi?",o:["Afrika","Şimali Amerika","Asiya","Avropa"],a:2,i:"Asiya (~44,6 mln km²) — dünyanın ən böyük qitəsi."},
+    {e:"🌍",d:"h",q:"Azərbaycanda neçə rayon var?",o:["59","66","70","78"],a:1,i:"Azərbaycanda 66 inzibati rayon var."},
+    {e:"🏔️",d:"h",q:"Plate tektonikası nəyi izah edir?",o:["Hava dəyişkənliyi","Litosfer lövhələrinin hərəkəti","Okeanlardakı axınlar","Fəsillərin dəyişməsi"],a:1,i:"Plitə tektonikası: Yer qabığı böyük lövhələrdən ibarətdir, onların hərəkəti zəlzələ, vulkan, dağ əmələ gətirir."},
+    {e:"🌍",d:"m",q:"Latın Amerikasının ən böyük ölkəsi?",o:["Argentina","Meksika","Braziliya","Kolumbiya"],a:2,i:"Braziliya (~8,5 mln km²) — Latın Amerikanın ən böyük ölkəsi."},
+    {e:"🌊",d:"h",q:"Azərbaycanda neft hasilatı əsasən hansı ərazidə cəmlənib?",o:["Abşeron yarımadası","Lənkəran","Şirvan","Muğan"],a:0,i:"Neft hasilatı əsasən Abşeron yarımadasında və Xəzər şelfindədir."},
+    {e:"🌍",d:"h",q:"Dünyada ən çox əhalisi olan ölkə?",o:["Hindistan","Çin","ABŞ","Rusiya"],a:0,i:"2023-cü ildən Hindistan (~1,43 mlrd) əhali sayına görə dünyada birinci yerə çıxdı."},
+    {e:"🌍",d:"m",q:"Afrikanın ən hündür dağı?",o:["Atlas","Kilimancaro","Keniya","Karpatlar"],a:1,i:"Kilimancaro (5895 m) — Afrikanın ən hündür nöqtəsi, Tanzaniyada."},
+    {e:"🌍",d:"h",q:"Azərbaycanda ən çox yayılmış torpaq növü?",o:["Qara torpaq","Boz-qonur torpaq","Sarı torpaq","Şabalıdı torpaq"],a:1,i:"Boz-qonur torpaqlar Kür-Araz ovalığında geniş yayılıb."},
+    {e:"🏔️",d:"m",q:"Azərbaycanda Böyük Qafqaz dağlarının ən hündür zirvəsi?",o:["Bazardüzü","Şahdağ","Tufandağ","Murovdağ"],a:0,i:"Bazardüzü (4466 m) — Böyük Qafqazda Azərbaycana aid ən hündür zirvə."},
+    {e:"🌍",d:"h",q:"Ekvator hansı qitələrdən keçir?",o:["Afrika, Asiya, Amerika","Afrika, Cənubi Amerika, Asiya","Afrika, Okeaniya, Amerika","Avropa, Asiya, Afrika"],a:1,i:"Ekvator üç qitədən keçir: Afrika, Cənubi Amerika, Asiya (İndoneziya)."},
+    {e:"🌊",d:"h",q:"Dünyada ən dərin göl?",o:["Xəzər","Viktoria","Baykal","Superior"],a:2,i:"Baykal gölü (1642 m) — dünyanın ən dərin gölü, Sibirdə."}
+  ],
+  azerbaycan:[
+    {e:"📝",d:"h",q:"Tabeli mürəkkəb cümlədə budaq cümləsi nədir?",o:["Baş cümlə","Baş cümlənin bir üzvünü açıqlayan cümlə","Müstəqil cümlə","Xəbər cümlə"],a:1,i:"Budaq cümlə baş cümlənin bir üzvünü açıqlayır, ondan asılıdır."},
+    {e:"📖",d:"h",q:"Hansı bağlayıcı tabeli mürəkkəb cümlə yaradır?",o:["Və","Amma","Ki, çünki, əgər","Ya da"],a:2,i:"'Ki, çünki, əgər, halbuki' tabeli mürəkkəb cümlə bağlayıcılarıdır."},
+    {e:"✏️",d:"h",q:"İsmin yönlük halının sualı?",o:["Kimin?","Nəyi?","Kimə? Nəyə?","Kimdə?"],a:2,i:"Yönlük hal: kimə? nəyə? (-a/-ə şəkilçisi)"},
+    {e:"🔤",d:"h",q:"Felin şəkil kateqoriyaları neçədir?",o:["3","4","5","6"],a:2,i:"Felin 5 şəkli var: xəbər, əmr, arzu, şərt, lazım."},
+    {e:"📝",d:"h",q:"'Deyirdi ki, gəlsin' — bu cümlə nəyə aiddir?",o:["Sadə cümlə","Tabesiz mürəkkəb","Tabeli mürəkkəb","Nida cümləsi"],a:2,i:"'Ki' bağlayıcısı ilə yaranan tabeli mürəkkəb cümlədir."},
+    {e:"✏️",d:"h",q:"Sifətin müqayisə dərəcələri neçədir?",o:["2","3","4","5"],a:1,i:"Sifətin 3 müqayisə dərəcəsi var: adi, azaltma, üstünlük."},
+    {e:"📖",d:"h",q:"Azərbaycan dilində neçə hal var?",o:["5","6","7","8"],a:1,i:"Azərbaycan dilində isimlərin 6 halı var."},
+    {e:"🔤",d:"h",q:"Qrammatik omonimə misal?",o:["Gül(çiçək) - gül(güləşmə)","İsti-soyuq","Gözəl-çörək","Kitab-dəftər"],a:0,i:"'Gül' sözü həm çiçək (isim), həm güləşmə felindən əmr forması — omonimdir."},
+    {e:"📝",d:"h",q:"Modal fellər hansı qrupa aiddir?",o:["Əmr bildirən","İmkan, zərurilik bildirən","Hərəkət bildirən","Keyfiyyət bildirən"],a:1,i:"Modal fellər: bilmək, istəmək, lazım olmaq — imkan/zərurilik bildirir."},
+    {e:"✏️",d:"h",q:"'Merak etmək' ifadəsindəki 'etmək' feli nədir?",o:["Müstəqil fel","Köməkçi fel","Modal fel","Feli sifət"],a:1,i:"'Etmək' köməkçi feldir — isimlərlə birləşib feli birləşmələr yaradır."},
+    {e:"📖",d:"h",q:"Sintaktik təhlilin elementləri?",o:["Cümlə üzvləri, cümlə növü","Səs və hecələr","Morfemler","Leksik mənalar"],a:0,i:"Sintaktik təhlil: cümlə üzvləri (mübtəda, xəbər, təyin...) və cümlə növü."},
+    {e:"🔤",d:"h",q:"Azərbaycan dilinin ədəbi norması nəyə əsaslanır?",o:["Bakı şəhər danışıq dilinə","Elmi qrammatikaya","Qarabağ ləhcəsinə","Gəncə şəhər dilinə"],a:1,i:"Ədəbi dil norması elmi qrammatika və klassik ədəbiyyata əsaslanır."},
+    {e:"📝",d:"h",q:"Leksik təhlilin elementləri?",o:["Səs, heca, vurğu","Mənşə, istifadə sahəsi, üslub","Kök, şəkilçi","Sait, samit"],a:1,i:"Leksik təhlil: mənşə (alınma/öz), istifadə sahəsi (kitabi/danışıq), üslub."},
+    {e:"✏️",d:"h",q:"Azərbaycan dilində neçə nitq hissəsi var?",o:["8","9","10","11"],a:2,i:"Azərbaycan dilində 10 nitq hissəsi var."},
+    {e:"📖",d:"h",q:"Omonim nədir?",o:["Eyni mənalı sözlər","Əks mənalı sözlər","Eyni yazılan amma fərqli mənalı sözlər","Yeni sözlər"],a:2,i:"Omonimlər eyni səs tərkibinə malik, lakin fərqli mənalı sözlərdir."},
+    {e:"🔤",d:"h",q:"'da/də' bağlayıcısı ilə şəkilçisini fərqləndirin.",o:["Həmişə bitişik","Həmişə ayrı","Bağlayıcı ayrı, şəkilçi bitişik","Fərq yoxdur"],a:2,i:"'Mən də gəldim' — ayrı (bağlayıcı). 'Kitabda var' — bitişik (hal şəkilçisi)."},
+    {e:"📝",d:"h",q:"Antonimlərə misal?",o:["Gözəl-xoşagələn","Böyük-kiçik","Qaçmaq-qaçış","Oxumaq-yazmaq"],a:1,i:"Antonimlər əks mənalı sözlərdir: böyük↔kiçik."},
+    {e:"✏️",d:"h",q:"'Yazıçı' sözündəki şəkilçilər?",o:["-ı+çı","-çı","-ı,-çı","Yalnız kök"],a:2,i:"Yaz(kök)+-ı(isim şəkilçisi)+-çı(peşə bildirən şəkilçi)=Yazıçı."},
+    {e:"📖",d:"h",q:"Elmi üslubun əsas xüsusiyyəti?",o:["Emosionallıq","Terminoloji dəqiqlik","Sadəlik","Bədilik"],a:1,i:"Elmi üslub: terminoloji dəqiqlik, neytral ton, məntiqi ardıcıllıq."},
+    {e:"🔤",d:"h",q:"Feli sifət necə düzəlir?",o:["-maq/-məklə","-an/-ən, -mış/-miş ilə","-araq/-ərəklə","-ib/-ibdır ilə"],a:1,i:"Feli sifət: -an/-ən (gələn adam), -mış/-miş (oxumuş adam)."},
+    {e:"📝",d:"h",q:"Azərbaycan dilindəki ahəng qanunu nədir?",o:["Sözlərin eyni uzunluqda olması","Saitlərin söz daxilində uyumlu olması","Cümlələrin qoşalaşması","Qafiyə qaydaları"],a:1,i:"Ahəng qanunu: ön sıralı sözlərdə incə, arxa sıralı sözlərdə qalın saitlər gəlir."},
+    {e:"✏️",d:"h",q:"'Böyük' sözünün antonimi?",o:["Geniş","Hündür","Kiçik","Yekə"],a:2,i:"'Böyük' sözünün antonimi 'kiçik'dir."},
+    {e:"📖",d:"h",q:"Mətn nədir?",o:["Bir cümlə","Mənaca bağlı cümlələr toplusu","Söz birləşməsi","Abzas"],a:1,i:"Mətn — mənaca bir-biri ilə bağlı cümlələrin ardıcıl toplusudur."},
+    {e:"🔤",d:"h",q:"'Azərbaycan' sözündə neçə heca var?",o:["4","5","6","3"],a:0,i:"A-zər-bay-can = 4 heca."},
+    {e:"📝",d:"h",q:"Xitab cümlənin hansı üzvüdür?",o:["Mübtəda","Xəbər","Cümlə üzvü deyil","Tamamlıq"],a:2,i:"Xitab cümlənin qrammatik üzvü deyil — müraciət edilən şəxsin adıdır."}
+  ],
+  azerbaycan_edebiyyat:[
+    {e:"📝",d:"h",q:"Nizami Gəncəvinin 'Xəmsə'si neçə əsərdən ibarətdir?",o:["3","4","5","6"],a:2,i:"Xəmsə (Beşlər): Sirlər Xəzinəsi, Xosrov və Şirin, Leyli və Məcnun, Yeddi Gözəl, İskəndərnamə."},
+    {e:"📖",d:"h",q:"Fuzulinin doğulduğu yer?",o:["Gəncə","Kərbəla (İraq)","Bakı","Şirvan"],a:1,i:"Məhəmməd Füzuli (1494-1556) Kərbəlada (müasir İraq) anadan olub."},
+    {e:"✏️",d:"h",q:"Sabirin əsas satirik əsərinin adı?",o:["Hophopnamə","Molla Nəsrəddin","Aləmi-Nisvan","Dəmirçi Gavə"],a:0,i:"Mirzə Ələkbər Sabirin satirik şeirlər toplusu 'Hophopnamə' adlanır."},
+    {e:"📝",d:"h",q:"Huseyn Cavidin yaradıcılıq istiqaməti?",o:["Realizm","Tenqidi realizm","Romantizm","Klassisizm"],a:2,i:"Hüseyn Cavid (1882-1941) Azərbaycan romantizminin banisi sayılır."},
+    {e:"📖",d:"m",q:"'Dəli Kür' romanının müəllifi?",o:["İlyas Əfəndiyev","Anar","İsi Məlikzadə","Elçin"],a:2,i:"'Dəli Kür' romanını İsi Məlikzadə (1928-1984) yazmışdır."},
+    {e:"✏️",d:"h",q:"Azərbaycan ədəbiyyatında lirik şeirin əsas janrı?",o:["Qəzəl","Dastan","Roman","Hekayə"],a:0,i:"Qəzəl — klassik Azərbaycan ədəbiyyatının əsas lirik janrı (Füzuli, Xətai...)."},
+    {e:"📝",d:"h",q:"M.F.Axundzadənin Azərbaycan dramaturgiyasındakı rolu?",o:["Banisi","Inkişafına töhfə verdi","Əleyhinə çıxdı","Heç bir rolu olmadı"],a:0,i:"Mirzə Fətəli Axundzadə (1812-1878) Azərbaycan dramaturgiyasının banisidir."},
+    {e:"📖",d:"h",q:"Celil Məmmədquluzadənin satira jurnalı?",o:["Füyuzat","Molla Nəsrəddin","Kaspi","Şəlalə"],a:1,i:"'Molla Nəsrəddin' satirik jurnalı 1906-1931 illərdə Cəlil Məmmədquluzadə tərəfindən çıxarılıb."},
+    {e:"✏️",d:"h",q:"'Ana' sözünün metaforik mənası ədəbiyyatda?",o:["Qadın","Doğuran","Qoruyucu, məhəbbət, vətən rəmzi","Yaşlı qadın"],a:2,i:"Bədi ədəbiyyatda 'Ana' — məhəbbət, himayə, vətən kimi işlənən geniş metaforik obraz."},
+    {e:"📝",d:"m",q:"'Koroğlu' dastanının əsas mövzusu?",o:["Məhəbbət","Xalq qəhrəmanlığı","Fəlsəfə","Dini hisslər"],a:1,i:"Koroğlu dastanı xalq qəhrəmanlığını, azadlıq mübarizəsini tərənnüm edir."},
+    {e:"📖",d:"h",q:"Epik növün ən böyük janrı?",o:["Hekayə","Povest","Roman","Очерк"],a:2,i:"Roman — epik növün ən geniş həcmli, çoxsəciyyəli janrı."},
+    {e:"✏️",d:"h",q:"Lirik şeirdə qafiyə sxemi ABAB necə adlanır?",o:["Sarmaşıq qafiyə","Qoşma","Musammat","Çarpaz qafiyə"],a:3,i:"ABAB sxemi çarpaz (kəsişən) qafiyə adlanır."},
+    {e:"📝",d:"h",q:"Samər Vurğunun 'Azərbaycan' şeirinin yazıldığı il?",o:["1933","1935","1937","1941"],a:2,i:"Səməd Vurğunun 'Azərbaycan' şeiri 1937-ci ildə yazılıb."},
+    {e:"📖",d:"m",q:"Bədi ədəbiyyatın əsas funksiyası?",o:["Yalnız əyləndirmək","İdraki, estetik, tərbiyəvi","Yalnız öyrətmək","Siyasi təbliğ"],a:1,i:"Bədi ədəbiyyat üç əsas funksiya daşıyır: idrak, estetik zövq, tərbiyə."},
+    {e:"✏️",d:"h",q:"Qəzəl formasında neçə beyt olur?",o:["3-5","5-12","12-20","20-dən çox"],a:1,i:"Klassik qəzəl 5-12 beytdən ibarət olur, ilk beyti matla, son beyti maqta adlanır."},
+    {e:"📝",d:"h",q:"Şeirdə epifora nədir?",o:["Misranın əvvəlində söz/ifadə təkrarı","Misranın sonunda söz/ifadə təkrarı","Qafiyə növü","Bənd növü"],a:1,i:"Epifora — ardıcıl misraların sonunda eyni söz/ifadənin təkrarı."},
+    {e:"📖",d:"h",q:"Azərbaycan ədəbiyyatında realist hekayənin banisi?",o:["Sabir","C.Məmmədquluzadə","Hüseyn Cavid","Ü.Hacıbəyov"],a:1,i:"Cəlil Məmmədquluzadə realist nəsr ənənəsini Azərbaycan ədəbiyyatına gətirdi."},
+    {e:"✏️",d:"h",q:"'Oymaq' sözü şeirdə hansı bədi üsuldur?",o:["Metafora","Oxşama","Metonimiya","Epitet"],a:2,i:"Metonimiya — bir anlayışın onunla bağlı başqa anlayışla ifadəsi: 'Bütün kənd yığıldı' = kəndin sakinləri."},
+    {e:"📝",d:"m",q:"Rövşən Əlizadənin tanınmış əsərinin adı?",o:["Dəli Kür","Ölülər","Qaçaq Nəbi","İblis"],a:3,i:"'İblis' — Hüseyn Cavidin romantik dramıdır, əsas qəhrəman iblis obrazıdır."},
+    {e:"📖",d:"h",q:"Ədəbi dil norması nəyə əsaslanır?",o:["Dialektlərə","Elmi qrammatika və klassik ədəbiyyata","Küçə dilinə","Yalnız danışıq dilinə"],a:1,i:"Ədəbi dil norması elmi qrammatika qaydalarına və klassik ədəbiyyat nümunələrinə əsaslanır."},
+    {e:"✏️",d:"h",q:"Dastan janrının əsas xüsusiyyəti?",o:["Qısa həcm","Şeir+nəsr birliyи, xalq qəhrəmanı","Yalnız nəsr","Yalnız şeir"],a:1,i:"Dastan: şeir və nəsrin birliyindən ibarət, xalq qəhrəmanını tərənnüm edən janr."},
+    {e:"📝",d:"h",q:"Muasir Azərbaycan ədəbiyyatının tanınmış nümayəndəsi?",o:["Nizami","Füzuli","Anar","Sabir"],a:2,i:"Anar (Rəsul Rzanın oğlu, d.1938) — müasir Azərbaycan nəsrinin görkəmli nümayəndəsi."},
+    {e:"📖",d:"h",q:"'Ölülər' pyesinin müəllifi?",o:["Sabir","C.Məmmədquluzadə","H.Cavid","M.F.Axundzadə"],a:1,i:"'Ölülər' (1909) — Cəlil Məmmədquluzadənin ən məşhur dramı."},
+    {e:"✏️",d:"h",q:"Klassik şeirdə 'Rədif' nədir?",o:["Qafiyə","Qafiyədən sonra gələn dəyişməz söz/ifadə","Bənd","Misra"],a:1,i:"Rədif — qafiyədən sonra hər misrada dəyişmədən təkrarlanan söz/ifadədir."},
+    {e:"📝",d:"h",q:"Epopeyadan fərqli olaraq romanın əsas xüsusiyyəti?",o:["Daha qısa olması","Fərdi taleyin geniş sosial mühitdə açılması","Yalnız tarixi hadisələr","Yalnız müharibə mövzusu"],a:1,i:"Roman: fərdin taleyi geniş sosial-tarixi kontekstdə açılır, psixoloji dərinlik önəmlidir."}
   ]
 };
 
@@ -431,6 +559,16 @@ var QR = {
     {k:"fizika",n:"Fizika",ic:"⚛️",c:"#339af0"},
     {k:"kimya",n:"Kimya",ic:"⚗️",c:"#2ecc71"},
     {k:"informatika",n:"İnformatika",ic:"💻",c:"#cc5de8"}
+  ]},
+  2:{ad:"2-ci Qrup",fenns:[
+    {k:"riyaziyyat",n:"Riyaziyyat",ic:"🔢",c:"#c9993a"},
+    {k:"tarix",n:"Tarix",ic:"🏛️",c:"#e74c3c"},
+    {k:"cografiya",n:"Coğrafiya",ic:"🌍",c:"#27ae60"}
+  ]},
+  3:{ad:"3-cü Qrup",fenns:[
+    {k:"azerbaycan",n:"Azərbaycan Dili",ic:"📝",c:"#c9993a"},
+    {k:"azerbaycan_edebiyyat",n:"Ədəbiyyat",ic:"📚",c:"#e67e22"},
+    {k:"tarix",n:"Tarix",ic:"🏛️",c:"#e74c3c"}
   ]},
   4:{ad:"4-cü Qrup",fenns:[
     {k:"biologiya",n:"Biologiya",ic:"🧬",c:"#2ecc71"},
